@@ -1,0 +1,21 @@
+canvas#gameCanvas {
+	width: 100%;
+	background-color: #000;
+	text-align: center;
+}
+
+div#canvasContain {
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 50px;
+}
+
+div#userControls {
+	width: 
+}
+
+aside#playHighScore {
+	width: 28%;
+
+	padding: px;
+}

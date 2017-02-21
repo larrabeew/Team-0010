@@ -1,0 +1,14 @@
+body {
+	background-color: #2E4F58;
+	background-image: url('../images/background.png');
+	background-repeat: no-repeat;
+	
+}
+
+main {
+	width: 65%;
+	margin: 60px auto 0;
+	border: 1px solid #000;
+	padding-bottom: 1100px;
+}
+
