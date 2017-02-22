@@ -1,3 +1,10 @@
+div#logoImage {
+	background-image: url('../images/Battleship_logo.png');
+	background-repeat: no-repeat;
+	padding: 78px 400px;
+	background-position: center;
+}
+
 canvas#gameCanvas {
 	width: 100%;
 	background-color: #000;
@@ -5,17 +12,22 @@ canvas#gameCanvas {
 }
 
 div#canvasContain {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 	padding-top: 50px;
 }
 
 div#userControls {
-	width: 
+	
+}
+
+h2#highScore {
+	background-image: url('../images/index/highScoreHead.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: 42px 164px;
 }
 
 aside#playHighScore {
-	width: 28%;
-
-	padding: px;
+	margin: 0 auto;
 }

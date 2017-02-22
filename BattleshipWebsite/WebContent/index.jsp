@@ -12,7 +12,14 @@
 		
 	</head>
 	<body>
+		<h1>Battleship</h1>
+		<div class="container">
+			<div id="logoImage">
+			</div>
+		</div>
+		
 		<main>
+			
 			<nav class="navbar navbar-default">
 	  			<ul class="nav navbar-nav">
 					<li>
@@ -27,23 +34,28 @@
 				</ul>
 			</nav>
 		
+
 			<div id="canvasContain">
 				<canvas id="gameCanvas">
 				
 				</canvas>
 			</div>
-			
-			<div id="userControls">
-			
+			<div class="row">
+				<div class="col-md-4">
+					<aside id="playHighScore">
+						<h2 id="highScore"></h2>
+						
+						
+						
+					</aside>
+				</div>
+				<div class="col-md-8">
+					<div id="userControls">
+				
+					</div>
+				</div>
 			</div>
 			
-			<div id="howToPlay">
-			
-			</div>
-			
-			<aside id="playHighScore">
-			
-			</aside>
 			
 		</main>
 		<script
