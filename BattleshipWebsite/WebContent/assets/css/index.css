@@ -17,17 +17,26 @@ div#canvasContain {
 	padding-top: 50px;
 }
 
-div#userControls {
-	
-}
-
 h2#highScore {
 	background-image: url('../images/index/highScoreHead.png');
 	background-repeat: no-repeat;
 	background-position: center;
-	padding: 42px 164px;
+	padding: 48.5px 192px;
 }
 
-aside#playHighScore {
-	margin: 0 auto;
+h2#controlsHead {
+	background-image: url('../images/index/controlsHead.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: 48.5px 260px;
+}
+
+div.row#index1 {
+	margin-top: 40px;
+}
+
+div#highScoreContain {
+	
+	background-color: #fff;
+	
 }

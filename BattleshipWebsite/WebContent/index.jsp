@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport"
-			  content="width=device-width, 
-			  		   initial-scale=1.0">
+		<%@ include file="includes/head.jsp" %>
 		<title>Battleship | Home</title>
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-		<link href="assets/css/base.css" rel="stylesheet" type="text/css">
 		<link href="assets/css/index.css" rel="stylesheet" type="text/css">
-		
 	</head>
+	
 	<body>
+		
 		<h1>Battleship</h1>
 		<div class="container">
 			<div id="logoImage">
@@ -20,47 +16,42 @@
 		
 		<main>
 			
-			<nav class="navbar navbar-default">
-	  			<ul class="nav navbar-nav">
-					<li>
-						<a href="#">Home</a>
-					</li>
-					<li>
-						<a href="#">About</a>
-					</li>
-					<li>
-						<a href="#">Contact Us</a>
-					</li>
-				</ul>
-			</nav>
+			<%@ include file="includes/navigation.jsp" %>
 		
-
+			
 			<div id="canvasContain">
 				<canvas id="gameCanvas">
 				
 				</canvas>
 			</div>
-			<div class="row">
-				<div class="col-md-4">
+			
+			
+			<div class="row" id="index1">
+				<div class="col-md-5">
 					<aside id="playHighScore">
 						<h2 id="highScore"></h2>
+						<div id="highScoreContain">
 						
+							<p id="topDog">1.Jesus</p>
+							<p>2.Ronald McDonald</p>
 						
-						
+						</div>
 					</aside>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-7">
 					<div id="userControls">
-				
+						<h2 id="controlsHead"></h2>
+						
+						
+						
 					</div>
 				</div>
 			</div>
 			
 			
 		</main>
-		<script
-			  src="https://code.jquery.com/jquery-3.1.1.min.js"
-			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-			  crossorigin="anonymous"></script>
+		
+		<%@ include file="includes/scripts.jsp" %>
+		
 	</body>
 </html>
