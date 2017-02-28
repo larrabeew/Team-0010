@@ -5,13 +5,7 @@ div#logoImage {
 	background-position: center;
 }
 
-canvas#gameCanvas {
-	width: 100%;
-	background-color: #000;
-	text-align: center;
-}
-
-div#canvasContain {
+div#gameContain {
 	width: 90%;
 	margin: 0 auto;
 	padding-top: 50px;
@@ -31,12 +25,30 @@ h2#controlsHead {
 	padding: 48.5px 260px;
 }
 
-div.row#index1 {
-	margin-top: 40px;
+div#highScoreContain {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
 }
 
-div#highScoreContain {
-	
-	background-color: #fff;
+table#userBoard, table#enemyBoard {
+	margin: 0 auto;
+	background-image: url('../images/index/water.png');
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+td, th {
+	width: 2.5em;
+	height: 2.5em;
+	border: 1px solid #000;
+	text-align: center;
 	
 }
+
+th {
+	border: 1px solid #fff;
+	background-color: #000;
+	color: #fff;
+}
+

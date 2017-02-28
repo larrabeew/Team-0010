@@ -18,40 +18,44 @@
 			
 			<%@ include file="includes/navigation.jsp" %>
 		
-			
-			<div id="canvasContain">
-				<canvas id="gameCanvas">
+			<div id="gameContain">
+				<div class="col-md-6">
+					<table id="enemyBoard">
+						<%@ include file="includes/grid.jsp" %>
+					</table>
+				</div>
 				
-				</canvas>
+				<div class="col-md-6">
+					<table id="userBoard">						
+						<%@ include file="includes/grid.jsp" %>
+					</table>
+				
+				</div>
+
 			</div>
 			
-			
-			<div class="row" id="index1">
-				<div class="col-md-5">
-					<aside id="playHighScore">
-						<h2 id="highScore"></h2>
-						<div id="highScoreContain">
-						
-							<p id="topDog">1.Jesus</p>
-							<p>2.Ronald McDonald</p>
-						
-						</div>
-					</aside>
-				</div>
-				<div class="col-md-7">
-					<div id="userControls">
-						<h2 id="controlsHead"></h2>
-						
-						
-						
+			<div class="col-md-5">
+				<aside id="playHighScore">
+					<h2 id="highScore"></h2>
+					<div id="highScoreContain">
+					
+						<p id="topDog">1.Jesus</p>
+						<p>2.Ronald McDonald</p>
+					
 					</div>
+				</aside>
+			</div>
+			<div class="col-md-7">
+				<div id="userControls">
+					<h2 id="controlsHead"></h2>
+					
+					
+					
 				</div>
 			</div>
-			
-			
 		</main>
 		
 		<%@ include file="includes/scripts.jsp" %>
-		
+
 	</body>
 </html>
