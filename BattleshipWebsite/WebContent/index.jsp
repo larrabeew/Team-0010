@@ -21,75 +21,13 @@
 			<div id="gameContain">
 				<div class="col-md-6">
 					<table id="enemyBoard">
-						<tr>
-							<th></th>
-							<%
-							for(int i = 1; i <= 10; i++) {
-						    	%>
-						    	<th><%=i%></th>
-						    	<%
-							}
-							%>
-							
-						</tr>
-						
-						<%
-						
-						for(char tblLetter = 'A'; tblLetter <= 'J'; tblLetter++) {
-						  	%>
-						  	<tr id="<%=tblLetter%>">
-						  		<th><%=tblLetter%></th>
-						  		<% 
-								for(int i = 1; i <= 10; i++) {
-									%>
-									
-									<td class="<%=tblLetter%><%=i%>"></td>
-									<%
-									
-								}
-						  		%>
-							</tr>
-						  	<%
-						}
-						%>
-						
+						<%@ include file="includes/grid.jsp" %>
 					</table>
 				</div>
 				
 				<div class="col-md-6">
-					<table id="userBoard">
-						<tr>
-							<th></th>
-							<%
-							for(int i = 1; i <= 10; i++) {
-						    	%>
-						    	<th><%=i%></th>
-						    	<%
-							}
-							%>
-							
-						</tr>
-						
-						<%
-						
-						for(char tblLetter = 'A'; tblLetter <= 'J'; tblLetter++) {
-						  	%>
-						  	<tr id="<%=tblLetter%>">
-						  		<th><%=tblLetter%></th>
-						  		<% 
-								for(int i = 1; i <= 10; i++) {
-									%>
-									
-									<td class="<%=tblLetter%><%=i%>"></td>
-									<%
-									
-								}
-						  		%>
-							</tr>
-						  	<%
-						}
-						%>
-						
+					<table id="userBoard">						
+						<%@ include file="includes/grid.jsp" %>
 					</table>
 				
 				</div>
