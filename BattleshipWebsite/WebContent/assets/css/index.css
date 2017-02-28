@@ -33,6 +33,9 @@ div#highScoreContain {
 
 table#userBoard, table#enemyBoard {
 	margin: 0 auto;
+	background-image: url('../images/index/water.png');
+	background-repeat: no-repeat;
+	background-position: center top;
 }
 
 td, th {
@@ -40,9 +43,12 @@ td, th {
 	height: 2.5em;
 	border: 1px solid #000;
 	text-align: center;
+	
 }
 
 th {
 	border: 1px solid #fff;
+	background-color: #000;
+	color: #fff;
 }
 
