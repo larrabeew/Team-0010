@@ -4,4 +4,5 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="BattleshipWebsite"/>
         <property name="java-output-path" value="/BattleshipWebsite/build/classes"/>
+    </wb-module>
 </project-modules>
