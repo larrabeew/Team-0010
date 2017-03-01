@@ -1,3 +1,8 @@
+@font-face {
+    font-family: american;
+    src: url('../fonts/AmericanCaptain.ttf');
+}
+
 body {
 	background-color: #2E4F58;
 	background-image: url('../images/background.png');
@@ -23,5 +28,7 @@ h1 {
 	padding: 0;
 	font-size: 0;
 }
+
+
 
 

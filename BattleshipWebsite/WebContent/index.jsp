@@ -19,19 +19,21 @@
 			<%@ include file="includes/navigation.jsp" %>
 		
 			<div id="gameContain">
+			
 				<div class="col-md-6">
-					<table id="enemyBoard">
-						<%@ include file="includes/grid.jsp" %>
-					</table>
-				</div>
-				
-				<div class="col-md-6">
+					<h2>User</h2>
 					<table id="userBoard">						
 						<%@ include file="includes/grid.jsp" %>
 					</table>
 				
 				</div>
-
+			
+				<div class="col-md-6">
+					<h2>Opponent</h2>
+					<table id="enemyBoard">
+						<%@ include file="includes/grid.jsp" %>
+					</table>
+				</div>
 			</div>
 			
 			<div class="col-md-5">
