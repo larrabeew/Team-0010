@@ -1,4 +1,11 @@
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-		crossorigin="anonymous">
+<script src="assets/js/jquery-3.1.1.min.js">
+</script>
+
+<script src="assets/js/jquery.ui.min.js">
+</script>
+
+<script src="assets/js/bootstrap.min.js">
+</script>
+
+<script src="assets/js/initializeGame.js">
 </script>

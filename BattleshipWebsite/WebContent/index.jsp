@@ -10,8 +10,9 @@
 		
 		<h1>Battleship</h1>
 		<div class="container">
-			<div id="logoImage">
-			</div>
+			<img id="logo"
+				 src="assets/images/Battleship_logo.png"
+				 alt="Battleship Logo">
 		</div>
 		
 		<main>
@@ -33,11 +34,35 @@
 						<%@ include file="includes/grid.jsp" %>
 					</table>
 				</div>
+				
+				<div class="col-md-12">
+					<div id="shipDock">
+						<img id="CarrierShip"
+							 src="assets/images/ships/CarrierShip.png"
+							 alt="Carrier Image">
+							 
+						<img id="Battleship"
+							 src="assets/images/ships/Battleship.png"
+							 alt="Battleship Image">
+							 
+						<img id="DestroyerShip"
+							 src="assets/images/ships/DestroyerShip.png"
+							 alt="Destroyer Image">
+							 
+						<img id="SubShip"
+							 src="assets/images/ships/SubShip.png"
+							 alt="SubShip Image"> 
+						
+						<img id="PBShip"
+							 src="assets/images/ships/PBShip.png"
+							 alt="PBShip Image">
+					</div>
+				</div>
 
 			</div>
 
 			<div class="col-md-6">
-				<h2 id="controlsHead">Controls & Rules</h2>
+				<h2 id="controlsHead">Controls &amp; Rules</h2>
 					
 				
 			</div>
