@@ -11,8 +11,9 @@
 		
 		<h1>Battleship</h1>
 		<div class="container">
-			<div id="logoImage">
-			</div>
+			<img id="logo"
+			 src="assets/images/Battleship_logo.png"
+			 alt="Battleship Logo">
 		</div>
 		<main>
 			<%@ include file="includes/navigation.jsp" %>
