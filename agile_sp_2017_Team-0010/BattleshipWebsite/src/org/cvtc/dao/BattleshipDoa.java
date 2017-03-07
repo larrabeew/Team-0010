@@ -18,8 +18,14 @@ import org.cvtc.dao.DBUtility;
  */
 public class BattleshipDoa {
 	
-	static final String DROP_TABLES = "drop table if exists players;drop table if exists game_settings;drop table if exists game_grid;";
-	static final String CREATE_TABLES = "create table players(id integer primary key autoincrement, firstName text, lastName text, avatar_name text, wins integer, lose integer);create table game_settings(id integer primary key autoincrement, first_player integer, second_player integer, turn integer, won text); create table game_grid(id integer primary key autoincrement, game_id integer, player integer, col_nbr integer, row_nbr integer, value text);create table game_shot_grid(id integer primary key autoincrement, game_id integer, player integer, col_nbr integer, row_nbr integer, value text);create table ships_hit(id integer primary key autoincrement, game_id integer, player integer, carrierHits integer, battleshipHits integer, destroyerHits integer, subHits integer, pbHits integer);";
+	static final String DROP_TABLES = "drop table if exists players;drop table if exists game_settings;drop table if exists game_grid;drop table if exists game_shot_grid;drop table if exists ships_hit;";
+	
+	static final String CREATE_TABLE_PLAYER = "create table players(id integer primary key autoincrement, firstName text, lastName text, avatar_name text, wins integer, lose integer);";
+	static final String CREATE_TABLE_GAME_SETTINGS = "create table game_settings(id integer primary key autoincrement, first_player integer, second_player integer, turn integer, won text);";
+	static final String CREATE_TABLE_GAME_GRID = "create table game_grid(id integer primary key autoincrement, game_id integer, player integer, col_nbr integer, row_nbr integer, value text);";
+	static final String CREATE_TABLE_GAME_SHOT_GRID = "create table game_shot_grid(id integer primary key autoincrement, game_id integer, player integer, col_nbr integer, row_nbr integer, value text);";
+	static final String CREATE_TABLE__SHIPS_HIT = "create table ships_hit(id integer primary key autoincrement, game_id integer, player integer, carrierHits integer, battleshipHits integer, destroyerHits integer, subHits integer, pbHits integer);";
+	
 	static final String SELECT_PLAYER = "select * from player where id =";
 	static final String SELECT_GAME = "select * from game_settings where id =";
 	static final String SELECT_PLAYER_BOARD = "select * from game_grid where game_id =";
@@ -38,7 +44,11 @@ public class BattleshipDoa {
 			
 			//if tables exists resets them other wise just creates new tables.
 			statement.executeUpdate(DROP_TABLES);
-			statement.executeUpdate(CREATE_TABLES);					
+			statement.executeUpdate(CREATE_TABLE_PLAYER);
+			statement.executeUpdate(CREATE_TABLE_GAME_SETTINGS);
+			statement.executeUpdate(CREATE_TABLE_GAME_GRID);
+			statement.executeUpdate(CREATE_TABLE_GAME_SHOT_GRID);
+			statement.executeUpdate(CREATE_TABLE__SHIPS_HIT);
 			
 		}finally{
 			
@@ -128,7 +138,7 @@ public class BattleshipDoa {
 			
 			ps.setQueryTimeout(DBUtility.TIMEOUT);
 			
-			ps.executeQuery();
+			ps.executeUpdate();
 			
 			//close result set
 			ps.close();
@@ -167,22 +177,12 @@ public class BattleshipDoa {
 			final String firstPlayerID = resultSet.getString("firstPlayer");
 			final String secondPlayerID = resultSet.getString("secondPlayer");
 			final String playerTurn = resultSet.getString("turn");
-			final String carrierHits = resultSet.getString("carrierHits");
-			final String battleshipHits = resultSet.getString("battleshipHits");
-			final String destroyerHits = resultSet.getString("destroyerHits");
-			final String subHits = resultSet.getString("subHits");
-			final String pbHits = resultSet.getString("pbHits");
 			final String playerWon = resultSet.getString("won");
 			
 			//add game info to list
 			game.add(firstPlayerID);
 			game.add(secondPlayerID);
-			game.add(playerTurn);		
-			game.add(carrierHits);
-			game.add(battleshipHits);
-			game.add(destroyerHits);
-			game.add(subHits);
-			game.add(pbHits);			
+			game.add(playerTurn);					
 			game.add(playerWon);
 			
 			//close result sets
@@ -217,7 +217,7 @@ public class BattleshipDoa {
 			
 			ps.setQueryTimeout(DBUtility.TIMEOUT);
 			
-			ps.executeQuery();
+			ps.executeUpdate();
 
 			game_save = game_id;
 			
@@ -249,9 +249,10 @@ public class BattleshipDoa {
 		String game_save = "";
 		final Connection connection = DBUtility.createConnection();
 		PreparedStatement ps = null;
+		final Statement statement = connection.createStatement();
 		
 		try{
-			 ps = connection.prepareStatement("INSERT INTO game_settings  (id , first_player, second_player, turn, won) VALUES(null,?,?,?,0,0,0,0,0,'');");
+			 ps = connection.prepareStatement("INSERT INTO game_settings  (id , first_player, second_player, turn, won) VALUES(null,?,?,?,'');");
 				 
 			// set the preparedstatement parameters
 			ps.setString(1,firstPlayer);
@@ -260,79 +261,84 @@ public class BattleshipDoa {
 				    		
 			ps.setQueryTimeout(DBUtility.TIMEOUT);
 			
-			ps.executeQuery();
+			ps.executeUpdate();
 			
 			//get the game id
-			ps = connection.prepareStatement("SELECT id FROM game_settings WHERE first_player = ? AND second_player = ? ORDER BY id DESC LIMIT 1;");
-			ps.setString(1,firstPlayer);
-		    ps.setString(2,secondPlayer);
+			String sql_statement = "SELECT id FROM game_settings WHERE first_player = '" + firstPlayer + "' AND second_player = '" + secondPlayer + "' ORDER BY id DESC LIMIT 1;";
 		    
-		    final ResultSet resultSet = ps.executeQuery();
+		    final ResultSet resultSet = statement.executeQuery(sql_statement);
 		    
-		    final String gameID = resultSet.getString("id");
+		    int gameID = 0;
 		    
-			//loop through blankGameBoard to intailize database for first player
-			for(int i=0;i<blankGameBoard.length-1;i++){
-				
-				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
-					
-					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-					// set the preparedstatement parameters
-				 	ps.setString(1,gameID);
-				    ps.setString(2,firstPlayer);
-				    ps.setInt(3,i);
-				    ps.setInt(4,ii);
-				    
-				    ps.executeQuery();
-
-				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-					// set the preparedstatement parameters
-				 	ps.setString(1,gameID);
-				    ps.setString(2,firstPlayer);
-				    ps.setInt(3,i);
-				    ps.setInt(4,ii);
-				    
-				    ps.executeQuery();
-				    
-				}
-				
-			}
+		    if(!resultSet.next()){
+		    	gameID = resultSet.getInt("id");
+		    }
+		    
+		    resultSet.close();
+		    statement.close();
+		    
+//			//loop through blankGameBoard to intailize database for first player
+//			for(int i=0;i<blankGameBoard.length-1;i++){
+//				
+//				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
+//					
+//					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+//					// set the preparedstatement parameters
+//				 	ps.setInt(1,gameID);
+//				    ps.setString(2,firstPlayer);
+//				    ps.setInt(3,i);
+//				    ps.setInt(4,ii);
+//				    
+//				    ps.executeUpdate();
+//
+//				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+//					// set the preparedstatement parameters
+//				 	ps.setInt(1,gameID);
+//				    ps.setString(2,firstPlayer);
+//				    ps.setInt(3,i);
+//				    ps.setInt(4,ii);
+//				    
+//				    ps.executeUpdate();
+//				    
+//				}
+//				
+//			}
+//			
+//			//loop through blankGameBoard to intailize database for second player
+//			for(int i=0;i<blankGameBoard.length-1;i++){
+//				
+//				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
+//					
+//					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+//					// set the preparedstatement parameters
+//				 	ps.setInt(1,gameID);
+//				    ps.setString(2,secondPlayer);
+//				    ps.setInt(3,i);
+//				    ps.setInt(4,ii);
+//				    
+//				    ps.executeUpdate();
+//				    
+//				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+//					// set the preparedstatement parameters
+//				 	ps.setInt(1,gameID);
+//				    ps.setString(2,secondPlayer);
+//				    ps.setInt(3,i);
+//				    ps.setInt(4,ii);
+//				    
+//				    ps.executeUpdate();
+//				    
+//				}
+//				
+//			}
+//			
+//			ps = connection.prepareStatement("INSERT INTO ships_hit (id, game_id, player_id, carrierHits,  battleshipHits, destroyerHits, subHits, pbHits) VALUES(null,?,?,'5','4','3','3','2');");
+//			// set the preparedstatement parameters
+//		 	ps.setInt(1,gameID);
+//		    ps.setString(2,secondPlayer);
+//		    
+//		    ps.executeUpdate();
 			
-			//loop through blankGameBoard to intailize database for second player
-			for(int i=0;i<blankGameBoard.length-1;i++){
-				
-				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
-					
-					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-					// set the preparedstatement parameters
-				 	ps.setString(1,gameID);
-				    ps.setString(2,secondPlayer);
-				    ps.setInt(3,i);
-				    ps.setInt(4,ii);
-				    
-				    ps.executeQuery();
-				    
-				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-					// set the preparedstatement parameters
-				 	ps.setString(1,gameID);
-				    ps.setString(2,secondPlayer);
-				    ps.setInt(3,i);
-				    ps.setInt(4,ii);
-				    
-				    ps.executeQuery();
-				    
-				}
-				
-			}
-			
-			ps = connection.prepareStatement("INSERT INTO ships_hit (id, game_id, player_id, carrierHits,  battleshipHits, destroyerHits, subHits, pbHits) VALUES(null,?,?,5,4,3,3,2);");
-			// set the preparedstatement parameters
-		 	ps.setString(1,gameID);
-		    ps.setString(2,secondPlayer);
-		    
-		    ps.executeQuery();
-			
-			game_save = gameID;
+			game_save = Integer.toString(gameID);
 			
 			//close result set
 			ps.close();
@@ -345,6 +351,7 @@ public class BattleshipDoa {
 			
 			//close databse connection
 			DBUtility.closeConnections(connection, ps);
+			DBUtility.closeConnections(connection, statement);
 			
 		}
 		
@@ -510,7 +517,7 @@ public class BattleshipDoa {
 					
 			ps.setQueryTimeout(DBUtility.TIMEOUT);
 					
-			ps.executeQuery();
+			ps.executeUpdate();
 			
 			//close result set
 			ps.close();
@@ -557,7 +564,7 @@ public class BattleshipDoa {
 					
 						    ps.setQueryTimeout(DBUtility.TIMEOUT);
 					
-					ps.executeQuery();
+					ps.executeUpdate();
 					
 				}
 				
@@ -607,7 +614,7 @@ public class BattleshipDoa {
 					
 			ps.setQueryTimeout(DBUtility.TIMEOUT);
 					
-			ps.executeQuery();
+			ps.executeUpdate();
 			
 			//close result set
 			ps.close();

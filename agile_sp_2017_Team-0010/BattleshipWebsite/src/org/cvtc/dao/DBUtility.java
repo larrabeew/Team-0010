@@ -13,7 +13,7 @@ public class DBUtility
 {
 	public static final int TIMEOUT = 30;
 	
-	private static final String CONNECTION = "jdbc:sqlite:battleship.db";
+	private static final String CONNECTION = "jdbc:sqlite:C:/Users/weslar/Documents/battleship.db";
 	private static final String DRIVER_NAME = "org.sqlite.JDBC";
 	
 	public static Connection createConnection() throws ClassNotFoundException, SQLException{

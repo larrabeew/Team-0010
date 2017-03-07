@@ -19,13 +19,12 @@ for(int i = 1; i <= 11; i++) {
 
 <%
 
-counterTable = -1;
 
-for(Character tblLetter = 'A'; tblLetter <= 'K'; tblLetter++) {
+for(char tblLetter = 'A'; tblLetter <= 'K'; tblLetter++) {
 	
-	counterTable += 1;
+	String kString = "K";
 	
-	if(counterTable == 10){
+	if((int)tblLetter == (int)kString.charAt(0)){
 	%>
 	 	<tr id="<%=tblLetter%>" style="visibility:hidden;">
 	 	<th style="visibility:hidden;"><%=tblLetter%></th>
@@ -39,7 +38,7 @@ for(Character tblLetter = 'A'; tblLetter <= 'K'; tblLetter++) {
 	}
 	for(int i = 1; i <= 11; i++) {
 		
-		if(i == 11 || counterTable == 10){
+		if(i == 11 || (int)tblLetter == (int)kString.charAt(0)){
 			%>
 		   	<td style="visibility:hidden;" class="<%=tblLetter%><%=i%>"></td>
 		   	<%

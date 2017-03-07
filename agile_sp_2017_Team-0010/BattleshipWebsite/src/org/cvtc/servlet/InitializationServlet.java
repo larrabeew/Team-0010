@@ -1,11 +1,6 @@
-package org.cvtc.servelets;
+package org.cvtc.servlet;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +14,7 @@ import org.cvtc.dao.BattleshipDoa;
  * Servlet implementation class intializationServelt
  */
 @WebServlet("/intialization")
-public class IntializationServelt extends HttpServlet {
+public class InitializationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -44,7 +39,9 @@ public class IntializationServelt extends HttpServlet {
 		}
 			try {
 				
-				game_id = battleshipDoa.startGame(user_id, opponent_id, user_id, blankGameBoard);				
+				game_id = battleshipDoa.startGame(user_id, opponent_id, user_id, blankGameBoard);	
+				
+				response.getWriter().append("<div id='response'>" + game_id + "<div>");
 				
 			} catch (Exception e) {
 				
@@ -54,27 +51,9 @@ public class IntializationServelt extends HttpServlet {
 				
 			}
 			
-			URL url = new URL("/index.jsp");
-	        Map<String,Object> params = new LinkedHashMap<>();
-	        params.put("game_id", game_id);
-	        params.put("user_id", user_id);
-	        params.put("opponent_id", opponent_id);
-
-	        StringBuilder postData = new StringBuilder();
-	        for (Map.Entry<String,Object> param : params.entrySet()) {
-	            if (postData.length() != 0) postData.append('&');
-	            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
-	            postData.append('=');
-	            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
-	        }
-	        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
-
-	        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-	        conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-	        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
-	        conn.setDoOutput(true);
-	        conn.getOutputStream().write(postDataBytes);
+			String response_string = "<div id='response'>" + game_id + "<div>";
+			
+			response.getWriter().append(response_string);
 			
 	}
 

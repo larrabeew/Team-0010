@@ -1,4 +1,4 @@
-package org.cvtc.servelets;
+package org.cvtc.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import org.cvtc.dao.BattleshipDoa;
  * Servlet implementation class CheckShotServelt
  */
 @WebServlet("/CheckShot")
-public class CheckShotServelt extends HttpServlet {
+public class CheckShotServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -27,11 +27,20 @@ public class CheckShotServelt extends HttpServlet {
 		
 		String game_id = request.getParameter("game");
 		
-		String[] coord = request.getParameter("coord").split("~");
+		String coord = request.getParameter("coord");
 		
-		int col_nbr = Integer.parseInt(coord[0]);
+		int col_nbr = 0;
 		
-		int row_nbr = Integer.parseInt(coord[1]);
+		char tblCoord = coord.charAt(0);
+		
+		for(char tblLetter = 'A'; tblLetter <= 'J'; tblLetter++) {
+			if((int)tblLetter  == (int)tblCoord){
+				break;
+			}
+			col_nbr += 1;
+		}
+		
+		int row_nbr = coord.charAt(0);
 		
 		//set up the database calls
 		BattleshipDoa battleshipDoa = new BattleshipDoa();

@@ -26,10 +26,7 @@
 			
 				<div class="col-md-6">
 					<h2>User</h2>
-					<table id="userBoard">		
-						<%
-						int counterTable = 0;
-						%>				
+					<table id="userBoard">						
 						<%@ include file="includes/grid.jsp" %>
 					</table>
 				</div>
@@ -62,9 +59,18 @@
 						<img id="PBShip"
 							 src="assets/images/ships/PBShip.png"
 							 alt="PBShip Image">
+						<select id="rotateShip">
+							<option value="carrier">Carrier Ship</option>
+							<option value="battleship">Battleship</option>
+							<option value="destroyer">Destroyer</option>
+							<option value="sub">Submarine</option>
+							<option value="pb">Patrol Boat</option>
+						</select>
+						<button id="btnRotate">Rotate</button>
+						<textarea rows="1" cols="50" placeholder="Enter Opponent's Name..."></textarea>
+						<button id="btnStart">Start Game</button>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="col-md-6">

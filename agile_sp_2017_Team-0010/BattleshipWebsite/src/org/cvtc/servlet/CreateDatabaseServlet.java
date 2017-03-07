@@ -1,4 +1,4 @@
-package org.cvtc.servelets;
+package org.cvtc.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import org.cvtc.dao.BattleshipDoa;
  * Servlet implementation class createDatabaseServelt
  */
 @WebServlet("/createDatabase")
-public class CreateDatabaseServelt extends HttpServlet {
+public class CreateDatabaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
