@@ -41,8 +41,11 @@ td, th {
 	text-align: center;
 }
 
+td {
+	padding: .5px;
+}
+
 th {
-	border: 1px solid #fff;
 	background-color: #000;
 	color: #fff;
 }
