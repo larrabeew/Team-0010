@@ -37,6 +37,7 @@
 				
 				<div class="col-md-12">
 					<div id="shipDock">
+						<h3>Ship Dock</h3>
 						<img id="CarrierShip"
 							 src="assets/images/ships/CarrierShip.png"
 							 alt="Carrier Image">
@@ -58,26 +59,28 @@
 							 alt="PBShip Image">
 					</div>
 				</div>
-
-			</div>
-
-			<div class="col-md-6">
-				<h2 id="controlsHead">Controls &amp; Rules</h2>
+				
+				<div class="col-md-8">
+					<h2 id="controlsHead">Controls &amp; Rules</h2>
 					
 				
-			</div>
+				</div>
 			
-			<div class="col-md-6">
-
-				<h2 id="highScore">High Scores</h2>
-				<div id="highScoreContain">
-				
-					<p id="topDog">1.Jesus</p>
-					<p>2.Ronald McDonald</p>
-				
+				<div class="col-md-4">
+	
+					<h2 id="highScore">High Scores</h2>
+					<div id="highScoreContain">
+					
+						<p id="topDog">1.Jesus</p>
+						<p>2.Ronald McDonald</p>
+					
+					</div>
+	
 				</div>
 
 			</div>
+
+			
 			
 		</main>
 		

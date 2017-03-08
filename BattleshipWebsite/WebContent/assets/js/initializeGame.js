@@ -75,21 +75,17 @@ $(function() {
 	
 	// Dragging on ship images
 	$shipImages.draggable({
-		snap: 'table#userBoard > tbody > tr > td',
+		snap: 'table#userBoard td',
 		snapTolerance: 35,
 		snapMode: "both",
 		opacity: 0.35,
 		cursorAt: { left: 14.5, top: 3},
-		drag: function() {
-			selectedShip.name = $(this).attr("id");
-		}
 	});
 	
-	$("table#userBoard > tbody > tr > td").droppable({
-		accept: "img",
-		drop: function() {
-			$(this).addClass(selectedShip.name);
-		}
+	
+	
+	$("table#userBoard td").droppable({
+		accept: "img"
 	});
 	
 });
