@@ -26,6 +26,11 @@
 					<table id="userBoard">						
 						<%@ include file="includes/grid.jsp" %>
 					</table>
+					<div id="userBoardButtons">
+						<button class="btn btn-primary">Start</button>
+						<button class="btn btn-primary">Reset Ships</button>
+						<button class="btn btn-primary">Reset Ships</button>
+					</div>
 				</div>
 
 				<div class="col-md-6">
@@ -35,29 +40,43 @@
 					</table>
 				</div>
 				
-				<div class="col-md-12">
+				<div class="col-md-8">
 					<div id="shipDock">
 						<h3>Ship Dock</h3>
-						<img id="CarrierShip"
-							 src="assets/images/ships/CarrierShip.png"
-							 alt="Carrier Image">
-							 
-						<img id="Battleship"
-							 src="assets/images/ships/Battleship.png"
-							 alt="Battleship Image">
-							 
-						<img id="DestroyerShip"
-							 src="assets/images/ships/DestroyerShip.png"
-							 alt="Destroyer Image">
-							 
-						<img id="SubShip"
-							 src="assets/images/ships/SubShip.png"
-							 alt="SubShip Image"> 
-						
-						<img id="PBShip"
-							 src="assets/images/ships/PBShip.png"
-							 alt="PBShip Image">
+						<div id="shipDockImages">
+							<img id="CarrierShip"
+								 src="assets/images/ships/CarrierShip.png"
+								 alt="Carrier Image">
+								 
+							<img id="Battleship"
+								 src="assets/images/ships/Battleship.png"
+								 alt="Battleship Image">
+								 
+							<img id="DestroyerShip"
+								 src="assets/images/ships/DestroyerShip.png"
+								 alt="Destroyer Image">
+								 
+							<img id="SubShip"
+								 src="assets/images/ships/SubShip.png"
+								 alt="SubShip Image"> 
+							
+							<img id="PBShip"
+								 src="assets/images/ships/PBShip.png"
+								 alt="PBShip Image">
+						</div>
 					</div>
+				</div>
+				
+				<div class="col-md-4">
+				
+					<div id="gameOutput">
+						<h3 id="console">Console</h3>
+						
+						<div id="gameOutputText">
+							
+						</div>
+					</div>
+					
 				</div>
 				
 				<div class="col-md-8">
@@ -65,22 +84,24 @@
 					
 				
 				</div>
-			
+				
 				<div class="col-md-4">
-	
-					<h2 id="highScore">High Scores</h2>
 					<div id="highScoreContain">
-					
-						<p id="topDog">1.Jesus</p>
-						<p>2.Ronald McDonald</p>
-					
+						<h2 id="highScore">High Scores</h2>
+						<div id="highScoreTextContain">
+						
+							<p id="topDog">1.Jesus</p>
+							<p>2.Ronald McDonald</p>
+						
+						</div>
+						
 					</div>
 	
 				</div>
 
 			</div>
 
-			
+			<%@ include file="includes/footer.jsp" %>
 			
 		</main>
 		

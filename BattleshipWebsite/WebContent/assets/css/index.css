@@ -12,7 +12,8 @@ div#gameContain {
 
 h2#highScore {
 	color: gold;
-	padding-top: 75px;
+	padding-top: 20px;
+	padding-bottom: 10px;
 	text-shadow: -0.5px 0 #000, 0 0.5px #000, 0.5px 0 #000, 0 -0.5px #000;
 }
 
@@ -26,6 +27,12 @@ div#highScoreContain {
 	margin: 0 auto;
 	text-align: center;
 }
+
+table#userBoard, table#enemyBoard, div#shipDock {
+	background-image: url('../images/index/water.png');
+	background-repeat: no-repeat;
+	background-position: center;
+} 
 
 table#userBoard, table#enemyBoard {
 	margin: 0 auto;
@@ -44,7 +51,7 @@ td, th {
 }
 
 td {
-	padding: .5px;
+	padding: 1px;
 	
 }
 
@@ -53,18 +60,85 @@ th {
 	color: #fff;
 }
 
+div#userBoardButtons {
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 10px;
+	text-align: center;
+}
+
+div#userBoardButtons > button {
+	margin: 0 10px;
+}
+
 div.col-md-6 {
 	min-height: 555px;
 	min-width: 445px;
 }
 
 div#shipDock {
-	border: 2px solid #000;
+	border: 1px solid #000;
 	border-radius: 10px;
 	padding: 10px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+div#shipDockImages {
+	text-align: center;
+	margin: 0 auto;
+}
+
+div#shipDock img {
+	z-index: 1000;
+	position: relative;
+	padding: 0 15px;
+}
+
+div#gameOutput, div#gameOutputText {
+	border-radius: 10px;
+}
+
+h3#console {
+	padding: 10px;
+	margin: 0;
+}
+
+div#gameOutput {
+	padding-bottom: 7px;
+	border: 1px solid #000;
+	background-color: #D3D3D3;
+	width: 90%;
+	height: 245px;
+}
+
+div#gameOutputText {
+	background-color: #000;
+	width: 95%;
+	margin: 0 auto;
+	height: 75%;
 }
 
 div#highScoreContain {
-	font-size: 18px;
+	margin-top: 55px;
+	background: rgba(241,231,101,1);
+	background: -moz-linear-gradient(top, rgba(241,231,101,1) 0%, rgba(255,217,0,0.95) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(241,231,101,1)), color-stop(100%, rgba(255,217,0,0.95)));
+	background: -webkit-linear-gradient(top, rgba(241,231,101,1) 0%, rgba(255,217,0,0.95) 100%);
+	background: -o-linear-gradient(top, rgba(241,231,101,1) 0%, rgba(255,217,0,0.95) 100%);
+	background: -ms-linear-gradient(top, rgba(241,231,101,1) 0%, rgba(255,217,0,0.95) 100%);
+	background: linear-gradient(to bottom, rgba(241,231,101,1) 0%, rgba(255,217,0,0.95) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e765', endColorstr='#ffd900', GradientType=0 );
+	border: 2px solid #D3D3D3;
+	border-radius: 10px;
+}
+
+div#highScoreTextContain {
+	font-size: 15px;
+	padding-bottom: 15px;
+}
+
+p#topDog {
+	font-size: 30px;
 }
 

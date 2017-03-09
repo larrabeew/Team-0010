@@ -1,11 +1,5 @@
 $(function() {
 	
-	var arrayBoard = [];
-	
-	var ships = [];
-	
-	//ships.push({name: , length:});
-	
 	var selectedShip = {
 		name: "",
 			
@@ -19,9 +13,9 @@ $(function() {
 	
 	var selectedDirection = {
 		
-	    // UP and DOWN will be the
+	    // RIGHT and DOWN will be the
 		// only possible values
-		dir: "UP",
+		dir: "DOWN",
 			
 		get direction() {
 			return this._dir
@@ -32,7 +26,7 @@ $(function() {
 	
 	}
 	
-	var $shipImages = $("div#shipDock > img");
+	var $shipImages = $("div#shipDock > div#shipDockImages > img");
 	
 	// Clicks on enemy board
 	$('table#enemyBoard > tbody > tr > td').click(function() {
@@ -56,7 +50,8 @@ $(function() {
 				'-o-transform':       'rotate(0deg)'
 			});
 			
-			selectedDirection.dir = "UP";
+			selectedDirection.dir = "RIGHT";
+			
 		} else {
 			
 			$(this).css({
@@ -80,8 +75,12 @@ $(function() {
 		snapMode: "both",
 		opacity: 0.35,
 		cursorAt: { left: 14.5, top: 3},
+		revert: "invalid",
+		stop: function(event, ui) {
+			
+		}
 	});
-	
+
 	
 	
 	$("table#userBoard td").droppable({

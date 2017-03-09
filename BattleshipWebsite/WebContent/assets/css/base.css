@@ -15,11 +15,10 @@ main {
 	width: 65%;
 	margin: 0 auto;
 	border: 1px solid #000;
-	padding-bottom: 1100px;
 	background-image: url('../images/main_background.png');
 	border-radius: 4px;
-	overflow: visible;
-	
+	overflow: auto;
+	margin-bottom: 35px;
 }
 
 h1 {
@@ -67,8 +66,22 @@ h3 {
 
 .navbar-nav > li > a {
 	padding-left: 50px;
+	padding-right: 50px;
 	font-family: american;
 	font-size: 25px;
+}
+
+footer {
+	clear: both;
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 50px 0 10px;
+}
+
+footer p {
+	font-weight: bold;
 }
 
 
