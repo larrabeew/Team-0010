@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cvtc.dao.DBUtility;
+import org.cvtc.ships.RandomizeShips;
 
 /**
  * @author weslar
@@ -22,15 +23,15 @@ public class BattleshipDoa {
 	
 	static final String CREATE_TABLE_PLAYER = "create table players(id integer primary key autoincrement, firstName text, lastName text, avatar_name text, wins integer, lose integer);";
 	static final String CREATE_TABLE_GAME_SETTINGS = "create table game_settings(id integer primary key autoincrement, first_player integer, second_player integer, turn integer, won text);";
-	static final String CREATE_TABLE_GAME_GRID = "create table game_grid(id integer primary key autoincrement, game_id integer, player integer, col_nbr integer, row_nbr integer, value text);";
-	static final String CREATE_TABLE_GAME_SHOT_GRID = "create table game_shot_grid(id integer primary key autoincrement, game_id integer, player integer, col_nbr integer, row_nbr integer, value text);";
-	static final String CREATE_TABLE__SHIPS_HIT = "create table ships_hit(id integer primary key autoincrement, game_id integer, player integer, carrierHits integer, battleshipHits integer, destroyerHits integer, subHits integer, pbHits integer);";
+	static final String CREATE_TABLE_GAME_GRID = "create table game_grid(id integer primary key autoincrement, game_id integer, player_id integer, col_nbr integer, row_nbr integer, value text);";
+	static final String CREATE_TABLE_GAME_SHOT_GRID = "create table game_shot_grid(id integer primary key autoincrement, game_id integer, player_id integer, col_nbr integer, row_nbr integer, value text);";
+	static final String CREATE_TABLE__SHIPS_HIT = "create table ships_hit(id integer primary key autoincrement, game_id integer, player_id integer, carrierHits integer, battleshipHits integer, destroyerHits integer, subHits integer, pbHits integer);";
 	
-	static final String SELECT_PLAYER = "select * from player where id =";
-	static final String SELECT_GAME = "select * from game_settings where id =";
-	static final String SELECT_PLAYER_BOARD = "select * from game_grid where game_id =";
-	static final String SELECT_PLAYER_SHOT_BOARD = "select * from game_shot_grid where game_id =";
-	static final String SELECT_SHIPS_HIT = "select * from ships_hit where game_id =";
+	static final String SELECT_PLAYER = "select * from player where id = ";
+	static final String SELECT_GAME = "select * from game_settings where id = ";
+	static final String SELECT_PLAYER_BOARD = "select * from game_grid where game_id = ";
+	static final String SELECT_PLAYER_SHOT_BOARD = "select * from game_shot_grid where game_id = ";
+	static final String SELECT_SHIPS_HIT = "select * from ships_hit where game_id = ";
 
 	public void createTables() throws Exception
 	{
@@ -166,25 +167,26 @@ public class BattleshipDoa {
 		final Connection connection = DBUtility.createConnection();
 		final Statement statement = connection.createStatement();
 		
-		game_id = SELECT_GAME.concat("'").concat(game_id).concat("'");
+		game_id = SELECT_GAME.concat(game_id);
 		
 		try{
 			
 			statement.setQueryTimeout(DBUtility.TIMEOUT);
 			
 			final ResultSet resultSet = statement.executeQuery(game_id);
+			if(resultSet.next()){
+				
+				final String firstPlayerID = resultSet.getString("first_player");
+				final String secondPlayerID = resultSet.getString("second_player");
+				final String playerTurn = resultSet.getString("turn");
+				final String playerWon = resultSet.getString("won");
 			
-			final String firstPlayerID = resultSet.getString("firstPlayer");
-			final String secondPlayerID = resultSet.getString("secondPlayer");
-			final String playerTurn = resultSet.getString("turn");
-			final String playerWon = resultSet.getString("won");
-			
-			//add game info to list
-			game.add(firstPlayerID);
-			game.add(secondPlayerID);
-			game.add(playerTurn);					
-			game.add(playerWon);
-			
+				//add game info to list
+				game.add(firstPlayerID);
+				game.add(secondPlayerID);
+				game.add(playerTurn);					
+				game.add(playerWon);
+			}
 			//close result sets
 			resultSet.close();
 			
@@ -199,7 +201,7 @@ public class BattleshipDoa {
 		
 	}
 	
-	public String saveGame(String game_id, String turn, String won) throws Exception
+	public String saveGame(int game_id, String turn, String won) throws Exception
 	{
 		
 		String game_save = "";
@@ -213,13 +215,13 @@ public class BattleshipDoa {
 			// set the preparedstatement parameters
 			ps.setString(1,turn);
 			ps.setString(2,won);
-			ps.setString(9,game_id);
+			ps.setInt(9,game_id);
 			
 			ps.setQueryTimeout(DBUtility.TIMEOUT);
 			
 			ps.executeUpdate();
 
-			game_save = game_id;
+			game_save = Integer.toString(game_id);
 			
 			//close result set
 			ps.close();
@@ -270,73 +272,86 @@ public class BattleshipDoa {
 		    
 		    int gameID = 0;
 		    
-		    if(!resultSet.next()){
+		    if(resultSet.next()){
 		    	gameID = resultSet.getInt("id");
 		    }
 		    
 		    resultSet.close();
 		    statement.close();
 		    
-//			//loop through blankGameBoard to intailize database for first player
-//			for(int i=0;i<blankGameBoard.length-1;i++){
-//				
-//				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
-//					
-//					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-//					// set the preparedstatement parameters
-//				 	ps.setInt(1,gameID);
-//				    ps.setString(2,firstPlayer);
-//				    ps.setInt(3,i);
-//				    ps.setInt(4,ii);
-//				    
-//				    ps.executeUpdate();
-//
-//				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-//					// set the preparedstatement parameters
-//				 	ps.setInt(1,gameID);
-//				    ps.setString(2,firstPlayer);
-//				    ps.setInt(3,i);
-//				    ps.setInt(4,ii);
-//				    
-//				    ps.executeUpdate();
-//				    
-//				}
-//				
-//			}
-//			
-//			//loop through blankGameBoard to intailize database for second player
-//			for(int i=0;i<blankGameBoard.length-1;i++){
-//				
-//				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
-//					
-//					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-//					// set the preparedstatement parameters
-//				 	ps.setInt(1,gameID);
-//				    ps.setString(2,secondPlayer);
-//				    ps.setInt(3,i);
-//				    ps.setInt(4,ii);
-//				    
-//				    ps.executeUpdate();
-//				    
-//				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
-//					// set the preparedstatement parameters
-//				 	ps.setInt(1,gameID);
-//				    ps.setString(2,secondPlayer);
-//				    ps.setInt(3,i);
-//				    ps.setInt(4,ii);
-//				    
-//				    ps.executeUpdate();
-//				    
-//				}
-//				
-//			}
-//			
-//			ps = connection.prepareStatement("INSERT INTO ships_hit (id, game_id, player_id, carrierHits,  battleshipHits, destroyerHits, subHits, pbHits) VALUES(null,?,?,'5','4','3','3','2');");
-//			// set the preparedstatement parameters
-//		 	ps.setInt(1,gameID);
-//		    ps.setString(2,secondPlayer);
-//		    
-//		    ps.executeUpdate();
+			//loop through blankGameBoard to intailize database for first player
+			for(int i=0;i<blankGameBoard.length-1;i++){
+				
+				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
+					
+					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+					// set the preparedstatement parameters
+				 	ps.setInt(1,gameID);
+				    ps.setString(2,firstPlayer);
+				    ps.setInt(3,i);
+				    ps.setInt(4,ii);
+				    
+				    ps.executeUpdate();
+
+				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+					// set the preparedstatement parameters
+				 	ps.setInt(1,gameID);
+				    ps.setString(2,firstPlayer);
+				    ps.setInt(3,i);
+				    ps.setInt(4,ii);
+				    
+				    ps.executeUpdate();
+				    
+				}
+				
+			}
+			
+			//loop through blankGameBoard to intailize database for second player
+			for(int i=0;i<blankGameBoard.length-1;i++){
+				
+				for(int ii=0;ii<blankGameBoard[0].length -1;ii++){
+					
+					ps = connection.prepareStatement("INSERT INTO game_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+					// set the preparedstatement parameters
+				 	ps.setInt(1,gameID);
+				    ps.setString(2,secondPlayer);
+				    ps.setInt(3,i);
+				    ps.setInt(4,ii);
+				    
+				    ps.executeUpdate();
+				    
+				    ps = connection.prepareStatement("INSERT INTO game_shot_grid  (id, game_id, player_id, col_nbr , row_nbr, value) VALUES(null,?,?,?,?,'');");
+					// set the preparedstatement parameters
+				 	ps.setInt(1,gameID);
+				    ps.setString(2,secondPlayer);
+				    ps.setInt(3,i);
+				    ps.setInt(4,ii);
+				    
+				    ps.executeUpdate();
+				    
+				}
+				
+			}
+			
+			ps = connection.prepareStatement("INSERT INTO ships_hit (id, game_id, player_id, carrierHits,  battleshipHits, destroyerHits, subHits, pbHits) VALUES(null,?,?,'5','4','3','3','2');");
+			// set the preparedstatement parameters
+		 	ps.setInt(1,gameID);
+		    ps.setString(2,secondPlayer);
+		    
+		    ps.executeUpdate();
+		    
+		    ps = connection.prepareStatement("INSERT INTO ships_hit (id, game_id, player_id, carrierHits,  battleshipHits, destroyerHits, subHits, pbHits) VALUES(null,?,?,'5','4','3','3','2');");
+			// set the preparedstatement parameters
+		 	ps.setInt(1,gameID);
+		    ps.setString(2,firstPlayer);
+		    
+		    ps.executeUpdate();
+		    
+		    RandomizeShips computerShips = new RandomizeShips();
+		    
+		    BattleshipDoa battleShipDoa = new BattleshipDoa();
+		    
+		    battleShipDoa.saveGameGrid(gameID, secondPlayer, computerShips.getPlayer_grid());
 			
 			game_save = Integer.toString(gameID);
 			
@@ -367,7 +382,7 @@ public class BattleshipDoa {
 		final Connection connection = DBUtility.createConnection();
 		final Statement statement = connection.createStatement();
 		
-		game_id = SELECT_PLAYER_SHOT_BOARD.concat("'").concat(game_id).concat("' AND player = '").concat(player_id).concat("' ORDER BY col_nbr DESC, row_nbr DESC");
+		game_id = SELECT_PLAYER_SHOT_BOARD.concat("'").concat(game_id).concat("' AND player_id = '").concat(player_id).concat("' ORDER BY col_nbr DESC, row_nbr DESC");
 		
 		try{
 			
@@ -411,7 +426,7 @@ public class BattleshipDoa {
 		final Connection connection = DBUtility.createConnection();
 		final Statement statement = connection.createStatement();
 		
-		game_id = SELECT_PLAYER_BOARD.concat("'").concat(game_id).concat("' AND player = '").concat(player_id).concat("' ORDER BY col_nbr DESC, row_nbr DESC");
+		game_id = SELECT_PLAYER_BOARD.concat("'").concat(game_id).concat("' AND player_id = '").concat(player_id).concat("' ORDER BY col_nbr DESC, row_nbr DESC");
 		
 		try{
 			
@@ -454,7 +469,7 @@ public class BattleshipDoa {
 		final Statement statement = connection.createStatement();
 		String sqlStatement = "";
 		
-		sqlStatement = SELECT_SHIPS_HIT.concat("'").concat(game_id).concat("' AND player = '").concat(player_id).concat("'");
+		sqlStatement = SELECT_SHIPS_HIT.concat(game_id).concat(" AND player_id = '").concat(player_id).concat("'");
 		
 		try{
 			
@@ -463,7 +478,7 @@ public class BattleshipDoa {
 			final ResultSet resultSet = statement.executeQuery(sqlStatement);
 			
 			//loop through the results get the ships hit
-			while (resultSet.next()) {
+			if (resultSet.next()) {
 				
 				final int carrierHits = resultSet.getInt("carrierHits");
 				final int battleshipHits = resultSet.getInt("battleshipHits");
@@ -495,7 +510,7 @@ public class BattleshipDoa {
 		
 	}
 	
-	public String updateShipsHit(String game_id, String player_id, int carrierHits, int battleshipHits, int destroyerHtis, int subHits, int pbHits) throws Exception
+	public String updateShipsHit(int game_id, String player_id, int carrierHits, int battleshipHits, int destroyerHtis, int subHits, int pbHits) throws Exception
 	{
 		
 		String shipsHit = "";
@@ -512,7 +527,7 @@ public class BattleshipDoa {
 			ps.setInt(3, destroyerHtis);
 			ps.setInt(4,subHits);
 			ps.setInt(5,pbHits);
-			ps.setString(6,game_id);
+			ps.setInt(6,game_id);
 			ps.setString(7,player_id);
 					
 			ps.setQueryTimeout(DBUtility.TIMEOUT);
@@ -538,7 +553,7 @@ public class BattleshipDoa {
 		
 	}
 	
-	public String saveGameGrid(String game_id, String player_id, String[][] playerGrid) throws Exception
+	public String saveGameGrid(int game_id, String player_id, String[][] playerGrid) throws Exception
 	{
 		
 		String game_save = "";
@@ -557,7 +572,7 @@ public class BattleshipDoa {
 					 
 						// set the preparedstatement parameters
 						    ps.setString(1,playerGrid[i][ii]);
-						    ps.setString(2,game_id);
+						    ps.setInt(2,game_id);
 						    ps.setString(3,player_id);
 						    ps.setInt(4,i);
 						    ps.setInt(5,ii);
@@ -641,23 +656,22 @@ public class BattleshipDoa {
 		
 		String value = "";
 		final Connection connection = DBUtility.createConnection();
-		PreparedStatement ps = null;
+		final Statement statement = connection.createStatement();
+		String sqlStatement = "";
+		
+		sqlStatement = "SELECT value FROM game_grid WHERE game_id = '" + game_id + "' AND player_id = '" + opponent_id + "' AND col_nbr = '" + col_nbr + "' AND row_nbr = '" + row_nbr + "'";
 		
 		try{			
+
+			statement.setQueryTimeout(DBUtility.TIMEOUT);
+						    
+			 final ResultSet resultSet = statement.executeQuery(sqlStatement); 
 			
-			ps = connection.prepareStatement("SELECT value FROM game_grid WHERE game_id = ? AND player_id = ? AND col_nbr = ? AND row_nbr = ?");
-					 
-			// set the preparedstatement parameters
-			 ps.setString(1,game_id);
-			 ps.setString(2,opponent_id);
-			 ps.setInt(3,col_nbr);
-			 ps.setInt(4,row_nbr);
-			 
-			 ps.setQueryTimeout(DBUtility.TIMEOUT);
-						    
-			 final ResultSet resultSet = ps.executeQuery(); 
-						    
-			 value = resultSet.getString("value");
+			 if(resultSet.next()){
+				
+				 value = resultSet.getString("value");
+				 
+			 }			 
 			 
 			 BattleshipDoa battleshipDoa = new BattleshipDoa();
 			 
@@ -671,7 +685,7 @@ public class BattleshipDoa {
 				
 			}else{
 				
-				turn = game.get(1);
+				turn = game.get(0);
 				
 			}
 			
@@ -687,7 +701,7 @@ public class BattleshipDoa {
 				
 			}
 			
-			List<Integer> shipsHit = battleshipDoa.retrieveShipsHit(game_id, player_id);
+			List<Integer> shipsHit = battleshipDoa.retrieveShipsHit(game_id, opponent_id);
 			 
 			 int pbHits = shipsHit.get(4);
 			 int carrierHits = shipsHit.get(0);
@@ -802,9 +816,9 @@ public class BattleshipDoa {
 				battleshipDoa.updateGameShotGrid(game_id, player_id, col_nbr, row_nbr, value);
 			}
 			
-			battleshipDoa.updateShipsHit(game_id, player_id, carrierHits, battleshipHits, destroyerHits, subHits, pbHits);
+			battleshipDoa.updateShipsHit(Integer.parseInt(game_id), player_id, carrierHits, battleshipHits, destroyerHits, subHits, pbHits);
 			
-			battleshipDoa.saveGame(game_id, turn, winner);
+			battleshipDoa.saveGame(Integer.parseInt(game_id), turn, winner);
 			
 			if(winner != ""){
 				
@@ -821,7 +835,7 @@ public class BattleshipDoa {
 			}
 			
 			//close result set
-			ps.close();
+			resultSet.close();
 			
 		}catch(Exception e){
 			
@@ -830,7 +844,7 @@ public class BattleshipDoa {
 		}finally{
 			
 			//close databse connection
-			DBUtility.closeConnections(connection, ps);
+			DBUtility.closeConnections(connection, statement);
 			
 		}
 		

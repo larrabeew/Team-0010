@@ -13,7 +13,9 @@ var subShipDirection = "DOWN";
 var pbShip = "";
 var pbShipDirection = "DOWN";
 
-var game_id;
+var game_id = null;
+
+var turn = null;
 
 
 $(function() {
@@ -23,7 +25,18 @@ $(function() {
 		
 		var gridPosition = $(this).attr("class");
 		
-		alert(gridPosition);
+		var value = getShotValue(user_id, opponent_id, game_id, gridPosition);
+		
+		alert(value);
+		
+		if(opponent_id == "Computer"){
+			
+			var value = getShotValue(opponent_id, user_id, game_id, gridPosition);
+			
+			alert(value);
+			
+		}
+		
 		
 	});
 	
@@ -226,42 +239,111 @@ $(function() {
 	
 	//when the rotate btn is click rotate selected ship
 	$(document).on("click", "#btnStart", function(){
-		
 		user_id = "Wes";
 		opponent_id = "Computer";
-		if(game_id == undefined){
-			$.ajax({
-			  method: "POST",
-			  url: "intialization",
-			  data: { user_id: user_id, opponent_id: opponent_id, size: "10" }
-			})
-			  .done(function(data) {
-				  game_id = $(data).find("#response").text();
-				  game_id = game_id.trim();
-			});
+		var shipsSet = false;
+		if(game_id === null){
+			
+			game_id = startGame(user_id, opponent_id);
+			
+			if(carrierShip != "" && battleShip != "" && destroyerShip != "" && subShip != "" && pbShip != ""){
+				  
+				  var carrierShipString = carrierShipDirection + "~" + carrierShip;
+				  var pbShipString = pbShipDirection + "~" + pbShip;
+				  var battleShipString = battleShipDirection + "~" + battleShip;
+				  var destroyerShipString = destroyerShipDirection + "~" + destroyerShip;
+				  var subShipString = subShipDirection + "~" + subShip;
+				  
+				  shipsSet = setShips(user_id, game_id, carrierShipString, battleShipString, destroyerShipString, subShipString, pbShipString);
+			}
+			
+		}else{
+			
+			if(carrierShip != "" && battleShip != "" && destroyerShip != "" && subShip != "" && pbShip != ""){
+				  
+				  var carrierShipString = carrierShipDirection + "~" + carrierShip;
+				  var pbShipString = pbShipDirection + "~" + pbShip;
+				  var battleShipString = battleShipDirection + "~" + battleShip;
+				  var destroyerShipString = destroyerShipDirection + "~" + destroyerShip;
+				  var subShipString = subShipDirection + "~" + subShip;
+				  
+				  shipsSet = setShips(user_id, game_id, carrierShipString, battleShipString, destroyerShipString, subShipString, pbShipString);
+			}
+			
 		}
-		if(carrierShip != "" && battleShip != "" && destroyerShip != "" && subShip != "" && pbShip != ""){
-			  
-			  carrierShip = carrierShipDirection + "~" + carrierShip;
-			  pbShip = pbShipDirection + "~" + pbShip;
-			  battleShip = battleShipDirection + "~" + battleShip;
-			  destroyerShip = destroyerShipDirection + "~" + destroyerShip;
-			  subShip = subShipDirection + "~" + subShip;
-			  
-			  $.ajax({
-				  method: "POST",
-				  url: "setShips",
-				  data: { player: user_id, game: game_id, carriership: carrierShip, battleship: battleShip, destroyership: destroyerShip, subship: subShip, pbship: pbShip  }
-			  })
-			  	.done(function(data) {
-			  		var response = $(data).find("#response").text();
-			  		console.log(data);
-			  		if(data.indexOf("Error") != -1){
-			  			alert("An Error Occured");
-			  		}
-			  });
-		  }
+		
+		if(shipsSet){
+			
+			alert("Ships are set");
+			
+		}else{
+			
+			alert("Error when setting ships");
+			
+		}
+		
 		
 	});
 	
 });
+
+function startGame(user_id, opponent_id){
+	$.ajax({
+		  method: "POST",
+		  url: "intialization",
+		  data: { user_id: user_id, opponent_id: opponent_id, size: "10" }
+		}).promise()
+		  .done(function(data) {
+			  game_id = $(data).find("#response").text();
+			  game_id = game_id.trim();
+			  
+			  turn = user_id;
+			  
+		});
+	
+	return game_id;
+}
+
+function setShips(user_id, game_id, carrierShipString, battleShipString, destroyerShipString, subShipString, pbShipString){
+	
+	var returnVar = "";
+		  $.ajax({
+			  method: "POST",
+			  url: "setShips",
+			  data: { player: user_id, game: game_id, carriership: carrierShipString, battleship: battleShipString, destroyership: destroyerShipString, subship: subShipString, pbship: pbShipString  }
+		  })
+		  	.done(function(data) {			  		
+		  		var response = $(data).find("#response").text();
+		  		if(data.indexOf("Error") != -1){
+		  			returnVar = false;
+		  		}else{
+		  			returnVar = true;
+		  		}
+		  });
+	
+	return returnVar;
+}
+
+function getShotValue(user_id, opponent_id, game_id, gridPosition){
+	
+	var returnVar = "";
+	
+	$.ajax({
+		  method: "POST",
+		  url: "CheckShot",
+		  data: { player: user_id, opponent_id: opponent_id, game: game_id, coord: gridPosition }
+		})
+		  .done(function(data) {
+			  var value = $(data).find("#response").text();
+			  value = value.trim();
+			  if(value == ""){
+				  reutrnVar = "miss";
+			  }else if(value.indexOf("win") != -1){
+				  reutrnVar = value;
+			  }else{
+				  reutrnVar = "hit";
+			  }
+		});
+	
+	return returnVar;
+}

@@ -27,8 +27,6 @@ public class SetShipsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String erorSpot = "";
-		
 		try {
 			
 		//Grab the ships strings and split them on ~ from direction, start X, start Y
@@ -46,8 +44,6 @@ public class SetShipsServlet extends HttpServlet {
 		
 		String game_id = request.getParameter("game");
 		
-		erorSpot = "Setup";
-		
 		//Create ships to be places into grid
 		
 		CarrierShip playerCarrierShip = new CarrierShip(carrierShipStart[0], Integer.parseInt(carrierShipStart[1]) - 1, Integer.parseInt(carrierShipStart[2]) - 1);
@@ -63,22 +59,20 @@ public class SetShipsServlet extends HttpServlet {
 		//Place ships on grid
 		PlaceShips playerShips = new PlaceShips(playerCarrierShip, playerBattleShip, playerSubShip, playerDestroyerShip, playerPbShip);
 		
-		erorSpot = "Ship Setup";
 		
 		String[][] playerGrid = playerShips.getPlayerGrid();
 		
-		erorSpot = "Grid Setup";
 		//Initialize database connect
 		BattleshipDoa battleshipDoa = new BattleshipDoa();
-		erorSpot = "DB Setup";
+
 			//save the grid to the database.
-			battleshipDoa.saveGameGrid(game_id, player_id, playerGrid);
+			battleshipDoa.saveGameGrid(Integer.parseInt(game_id), player_id, playerGrid);
 			
 			response.getWriter().append("<div id='response'>Ships Set</div>");
 			
 		} catch (Exception e) {
 			
-			response.getWriter().append("<div id='response'>Ships Set Error " + e.getMessage() + " " + erorSpot + "</div>");
+			response.getWriter().append("<div id='response'>Ships Set Error " + e.getMessage() +"</div>");
 			
 			e.printStackTrace();
 		}

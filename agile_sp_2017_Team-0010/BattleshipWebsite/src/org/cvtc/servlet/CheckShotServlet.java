@@ -25,6 +25,8 @@ public class CheckShotServlet extends HttpServlet {
 		//get the game_id, player_id, and coordinates shot at to check to see if the shot is a hit.
 		String player_id = request.getParameter("player");
 		
+		String opponent_id = request.getParameter("opponent_id");
+		
 		String game_id = request.getParameter("game");
 		
 		String coord = request.getParameter("coord");
@@ -40,7 +42,7 @@ public class CheckShotServlet extends HttpServlet {
 			col_nbr += 1;
 		}
 		
-		int row_nbr = coord.charAt(0);
+		int row_nbr = coord.charAt(0) - 1;
 		
 		//set up the database calls
 		BattleshipDoa battleshipDoa = new BattleshipDoa();
@@ -65,11 +67,11 @@ public class CheckShotServlet extends HttpServlet {
 		}
 		
 		try {
-			String value = battleshipDoa.getValue(game_id, player_id, col_nbr, row_nbr);
+			String value = battleshipDoa.getValue(game_id, opponent_id, col_nbr, row_nbr);
 			
-			response.getWriter().append("Shot value: " + value);
+			response.getWriter().append("<div id='response'>" + value + "</div>");
 		} catch (Exception e) {
-			response.getWriter().append("Shot value: Error" + e.getMessage());
+			response.getWriter().append("<div id='response'>Shot value: Error" + e.getMessage() + "</div>");
 			e.printStackTrace();
 		}
 		
