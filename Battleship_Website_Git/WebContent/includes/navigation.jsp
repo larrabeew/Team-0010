@@ -4,10 +4,10 @@
 			<a href="index.jsp">Home</a>
 		</li>
 		<li>
-			<a href="#">About</a>
+			<a href="about.jsp">About</a>
 		</li>
 		<li>
-			<a href="&">instructions</a>
+			<a href="instructions.jsp">instructions</a>
 		</li>
 		<li>
 			<a href="history.jsp">History</a>

@@ -62,7 +62,21 @@
 			</div>
 
 			<div class="col-md-6">
-				<h2 id="controlsHead">Controls &amp; Rules</h2>
+				<h2 id="controlsHead">Controls</h2>
+				<p>
+					<ol>
+						<li>Click and drag the ship you want to place onto the user grid</li>
+						<li>Use the drop down to select a ship and then click the rotate button to rotate the ship 90 degrees</li>
+						<li>Click the start button to begin the game</li>
+						<li>Click a cell on the opponent grid to fire a shot
+							<ul>
+								<li>Red X is a hit</li>
+								<li>White Circle is a miss</li>
+							</ul>
+						</li>
+						<li>The first person to sink the other persons ship wins!</li>
+					</ol>
+				</p>
 					
 				
 			</div>
