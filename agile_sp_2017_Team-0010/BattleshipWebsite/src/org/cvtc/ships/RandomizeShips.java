@@ -48,7 +48,7 @@ public class RandomizeShips {
 					
 					randomY = random.nextInt(10);
 					randomX = random.nextInt(5);
-					playerCarrierShip = new CarrierShip("LEFT", randomX, randomY);
+					playerCarrierShip = new CarrierShip("RIGHT", randomX, randomY);
 					
 				}
 				
@@ -65,7 +65,7 @@ public class RandomizeShips {
 					
 					randomY = random.nextInt(10);
 					randomX = random.nextInt(6);
-					playerBattleShip = new BattleShip("LEFT", randomX, randomY);
+					playerBattleShip = new BattleShip("RIGHT", randomX, randomY);
 					
 				}
 				
@@ -81,7 +81,7 @@ public class RandomizeShips {
 					
 					randomY = random.nextInt(10);
 					randomX = random.nextInt(7);
-					playerSubShip = new SubShip("LEFT", randomX, randomY);
+					playerSubShip = new SubShip("RIGHT", randomX, randomY);
 					
 				}
 				
@@ -97,7 +97,7 @@ public class RandomizeShips {
 					
 					randomY = random.nextInt(10);
 					randomX = random.nextInt(7);
-					playerDestroyerShip = new DestroyerShip("LEFT", randomX, randomY);
+					playerDestroyerShip = new DestroyerShip("RIGHT", randomX, randomY);
 					
 				}
 				
@@ -113,7 +113,7 @@ public class RandomizeShips {
 					
 					randomY = random.nextInt(10);
 					randomX = random.nextInt(7);
-					playerPbShip = new PBShip("LEFT", randomX, randomY);
+					playerPbShip = new PBShip("RIGHT", randomX, randomY);
 					
 				}
 				

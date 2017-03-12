@@ -4,9 +4,6 @@
 		<%@ include file="includes/head.jsp" %>
 		<title>Battleship | Home</title>
 		<link href="assets/css/index.css" rel="stylesheet" type="text/css">
-		
-		<%@ page import="org.cvtc.ships.*" %>
-		<%@ page import="org.cvtc.ai.*" %>
 	</head>
 	
 	<body>
@@ -40,6 +37,7 @@
 				
 				<div class="col-md-12">
 					<div id="shipDock">
+						<h3>Ship Dock</h3>
 						<img id="CarrierShip"
 							 src="assets/images/ships/CarrierShip.png"
 							 alt="Carrier Image">
@@ -59,37 +57,31 @@
 						<img id="PBShip"
 							 src="assets/images/ships/PBShip.png"
 							 alt="PBShip Image">
-						<select id="rotateShip">
-							<option value="carrier">Carrier Ship</option>
-							<option value="battleship">Battleship</option>
-							<option value="destroyer">Destroyer</option>
-							<option value="sub">Submarine</option>
-							<option value="pb">Patrol Boat</option>
-						</select>
-						<button id="btnRotate">Rotate</button>
-						<textarea rows="1" cols="50" placeholder="Enter Opponent's Name..."></textarea>
-						<button id="btnStart">Start Game</button>
 					</div>
+					<button id="btnStart" >Start</button>
 				</div>
-			</div>
-
-			<div class="col-md-6">
-				<h2 id="controlsHead">Controls &amp; Rules</h2>
+				
+				<div class="col-md-8">
+					<h2 id="controlsHead">Controls &amp; Rules</h2>
 					
 				
-			</div>
+				</div>
 			
-			<div class="col-md-6">
-
-				<h2 id="highScore">High Scores</h2>
-				<div id="highScoreContain">
-				
-					<p id="topDog">1.Jesus</p>
-					<p>2.Ronald McDonald</p>
-				
+				<div class="col-md-4">
+	
+					<h2 id="highScore">High Scores</h2>
+					<div id="highScoreContain">
+					
+						<p id="topDog">1.Jesus</p>
+						<p>2.Ronald McDonald</p>
+					
+					</div>
+	
 				</div>
 
 			</div>
+
+			
 			
 		</main>
 		

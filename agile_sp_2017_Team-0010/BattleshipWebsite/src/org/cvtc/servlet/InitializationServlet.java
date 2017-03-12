@@ -23,8 +23,8 @@ public class InitializationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String user_id = request.getParameter("user_id");
-		String opponent_id = request.getParameter("opponent_id");
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		String opponent_id_string = request.getParameter("opponent_id");
 		int game_size = Integer.parseInt(request.getParameter("size"));
 		String game_id = "";
 		
@@ -32,9 +32,11 @@ public class InitializationServlet extends HttpServlet {
 		
 		BattleshipDoa battleshipDoa = new BattleshipDoa();
 		
-		if(opponent_id == null){
+		int opponent_id = 0;
+		
+		if(!opponent_id_string.equals("Computer")){
 			
-			opponent_id = "Computer";
+			opponent_id = Integer.parseInt(opponent_id_string);
 			
 		}
 			try {

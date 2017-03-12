@@ -29,6 +29,47 @@ h1 {
 	font-size: 0;
 }
 
+h2, h3 {
+	font-family: american;
+	text-align: center;
+	text-shadow: -0.5px 0 #fff, 0 0.5px #fff, 0.5px 0 #fff, 0 -0.5px #fff;
+}
+
+h2 {
+	font-family: american;
+	font-size: 45px;
+	color: #000;
+	margin-top: 0;
+	
+}
+
+h3 {
+	font-size: 35px;
+	margin-top: 0;
+	padding: 0;
+}
+
+.navbar .navbar-nav {
+	display: inline-block;
+	float: none;
+	vertical-align: top;
+}
+
+.navbar-default {
+	border-color: transparent;
+}
+
+.navbar, .navbar-default {
+	text-align: center;
+	background-color:rgba(255, 255, 255, 0.4);
+	
+}
+
+.navbar-nav > li > a {
+	padding-left: 50px;
+	font-family: american;
+	font-size: 25px;
+}
 
 
 

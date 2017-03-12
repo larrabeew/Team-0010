@@ -23,13 +23,25 @@ public class CheckShotServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//get the game_id, player_id, and coordinates shot at to check to see if the shot is a hit.
-		String player_id = request.getParameter("player");
+		String player_id_string = request.getParameter("player");
 		
-		String opponent_id = request.getParameter("opponent_id");
+		String opponent_id_string = request.getParameter("opponent_id");
 		
-		String game_id = request.getParameter("game");
+		int game_id = Integer.parseInt(request.getParameter("game"));
 		
 		String coord = request.getParameter("coord");
+		
+		int opponent_id = 0;
+		
+		int player_id = 0;
+		
+		if(!player_id_string.equals("Computer")){
+			player_id = Integer.parseInt(player_id_string);
+		}
+		
+		if(!opponent_id_string.equals("Computer")){
+			opponent_id = Integer.parseInt(opponent_id_string);
+		}
 		
 		int col_nbr = 0;
 		
@@ -42,12 +54,16 @@ public class CheckShotServlet extends HttpServlet {
 			col_nbr += 1;
 		}
 		
-		int row_nbr = coord.charAt(0) - 1;
+		char row_nbr_char = coord.charAt(1);
+		
+		String row_nbr_string = Character.toString(row_nbr_char);
+		
+		int row_nbr = Integer.parseInt(row_nbr_string) - 1;
 		
 		//set up the database calls
 		BattleshipDoa battleshipDoa = new BattleshipDoa();
 		
-		if(player_id == "Computer"){
+		if(player_id == 0){
 			try {
 				
 				String[][] playerGrid = battleshipDoa.retrieveGameShotBoard(game_id, player_id);
