@@ -1,0 +1,138 @@
+@font-face {
+    font-family: american;
+    src: url('../fonts/AmericanCaptain.ttf');
+}
+
+body {
+	background-color: #2E4F58;
+	background-image: url('../images/background.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	position: relative;
+}
+
+main {
+	width: 65%;
+	margin: 0 auto;
+	border: 1px solid #000;
+	padding-bottom: 1100px;
+	background-image: url('../images/main_background.png');
+	border-radius: 4px;
+	overflow: visible;
+	
+}
+
+h1 {
+	text-indent: -1000px;
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+}
+
+h2, h3 {
+	font-family: american;
+	text-align: center;
+	text-shadow: -0.5px 0 #fff, 0 0.5px #fff, 0.5px 0 #fff, 0 -0.5px #fff;
+}
+
+h2 {
+	font-family: american;
+	font-size: 45px;
+	color: #000;
+	margin-top: 0;
+	
+}
+
+h3 {
+	font-size: 35px;
+	margin-top: 0;
+	padding: 0;
+}
+
+.navbar .navbar-nav {
+	display: inline-block;
+	float: none;
+	vertical-align: top;
+}
+
+.navbar-default {
+	border-color: transparent;
+}
+
+.navbar, .navbar-default {
+	text-align: center;
+	background-color:rgba(255, 255, 255, 0.4);
+	
+}
+
+.navbar-nav > li > a {
+	padding-left: 50px;
+	font-family: american;
+	font-size: 25px;
+}
+
+
+#logo{
+	width: 100%;	
+}
+
+.startPage{
+	display: block;
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	width: 70%;
+	height: 90%;
+	background-color: #848482;
+	margin: 0 auto;
+	text-align: center;
+	border: 2px solid #333333;
+	box-shadow: -5px 5px #333333,
+		-5px 5px #333333,
+		-5px 5px #333333,
+		-5px 5px #333333,
+		-5px 5px #333333;
+		
+}
+
+.startBtn{
+	
+	top: 500px;
+	padding: 10px;
+
+	
+}
+.singleBtn{
+	
+	top: 300px;
+	padding: 10px;
+}
+
+.multiBtn{
+	
+	top: 300px;
+	padding: 10px;
+}
+
+#gameBtn{
+	display: inline-block;
+	border-radius: 8px;
+	font-size: 20px;
+}
+
+#gameBtn:hover{
+	box-shadow: 0 12px 0 rgba(0,0,0,0.24),
+		0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.audio{
+	text-align: center;
+	
+}
+
+.musicBtn{
+	border-radius: 8px;
+	font-size: 12px;
+	background-color: #848482; 
+}
+
