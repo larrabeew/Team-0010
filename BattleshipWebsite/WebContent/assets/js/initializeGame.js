@@ -70,18 +70,8 @@ $(function() {
 	
 	// Dragging on ship images
 	$shipImages.draggable({
-		snap: 'table#userBoard td',
-		snapTolerance: 35,
-		snapMode: "both",
-		opacity: 0.35,
-		cursorAt: { left: 14.5, top: 3},
-		revert: "invalid",
-		stop: function(event, ui) {
-			
-		}
+		
 	});
-
-	
 	
 	$("table#userBoard td").droppable({
 		accept: "img"
