@@ -29,7 +29,6 @@
 					<div id="userBoardButtons">
 						<button class="btn btn-primary">Start</button>
 						<button class="btn btn-primary">Reset Ships</button>
-						<button class="btn btn-primary">Reset Ships</button>
 					</div>
 				</div>
 
