@@ -10,3 +10,6 @@
 <script src="assets/js/initializeGame.js">
 </script>
 
+<script src="assets/js/console.js">
+</script>
+

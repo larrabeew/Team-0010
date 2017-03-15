@@ -23,7 +23,7 @@
 			
 				<div class="col-md-6">
 					<h2>User</h2>
-					<table id="userBoard">						
+					<table id="userBoard" class="shadow">						
 						<%@ include file="includes/grid.jsp" %>
 					</table>
 					<div id="userBoardButtons">
@@ -34,7 +34,7 @@
 
 				<div class="col-md-6">
 					<h2>Opponent</h2>
-					<table id="enemyBoard">
+					<table id="enemyBoard" class="shadow">
 						<%@ include file="includes/grid.jsp" %>
 					</table>
 				</div>
@@ -72,7 +72,8 @@
 						<h3 id="console">Console</h3>
 						
 						<div id="gameOutputText">
-							
+							<p id=consoleText>Welcome to Battleship!</p>
+							<span id="cursor"></span>
 						</div>
 					</div>
 					

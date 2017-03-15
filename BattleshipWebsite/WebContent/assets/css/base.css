@@ -84,5 +84,11 @@ footer p {
 	font-weight: bold;
 }
 
+.shadow {
+	-webkit-box-shadow: 2px 0px 30px 0px rgba(50, 50, 50, 0.32);
+	-moz-box-shadow:    2px 0px 30px 0px rgba(50, 50, 50, 0.32);
+	box-shadow:         2px 0px 30px 0px rgba(50, 50, 50, 0.32);
+}
+
 
 
