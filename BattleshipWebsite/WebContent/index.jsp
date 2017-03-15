@@ -27,8 +27,8 @@
 						<%@ include file="includes/grid.jsp" %>
 					</table>
 					<div id="userBoardButtons">
-						<button class="btn btn-primary">Start</button>
-						<button class="btn btn-primary">Reset Ships</button>
+						<button class="btn gameBtn">Start</button>
+						<button class="btn gameBtn">Reset Ships</button>
 					</div>
 				</div>
 
@@ -73,7 +73,7 @@
 						
 						<div id="gameOutputText">
 							<p id=consoleText>Welcome to Battleship!</p>
-							<span id="cursor"></span>
+							<span id="caret"></span><input type="text" id="fakeInput">
 						</div>
 					</div>
 					

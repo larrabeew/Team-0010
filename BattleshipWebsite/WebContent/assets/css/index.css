@@ -71,6 +71,17 @@ div#userBoardButtons > button {
 	margin: 0 10px;
 }
 
+.gameBtn{
+	background-color: #DEDDDD;
+	border-color: #000;
+	font-family: 19thCent;
+}
+
+.gameBtn:hover {
+	background-color: #B1B1B1;
+	border-color: #000;
+}
+
 div.col-md-6 {
 	min-height: 555px;
 	min-width: 445px;
@@ -128,10 +139,15 @@ p#consoleText {
 	margin: 0;
 }
 
-span#cursor {
+span#caret {
 	padding: 1px 3px;
 	background-color: #fff;
 	margin: 10px;
+}
+
+input#fakeInput {
+	background-color: #000;
+	border: 0;
 }
 
 div#highScoreContain {

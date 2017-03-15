@@ -3,6 +3,11 @@
     src: url('../fonts/AmericanCaptain.ttf');
 }
 
+@font-face {
+	font-family: 19thCent;
+	src: url('../fonts/19thCent.otf');
+}
+
 body {
 	background-color: #2E4F58;
 	background-image: url('../images/background.png');
