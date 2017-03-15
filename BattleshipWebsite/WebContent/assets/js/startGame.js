@@ -21,7 +21,31 @@ var turn = null;
 // Output code here yo!
 var $consoleOutput = $('p#consoleText');
 
+var $ships = $('div#shipDockImages > img')
+
 $(function() {
+	
+	// Reset the ships
+	$('button#reset').click(function() {
+		
+		$ships.each(function() {
+
+			var $this = $(this);
+			
+			if($this.css('left') != 0 || $this.css('top') != 0) {
+
+				$this.animate({
+					left: 0,
+					top: 0,
+					rotate: 0
+
+				}, 600);
+				
+			}
+			
+		});
+		
+	});
 
 	
 	// Clicks on enemy board
@@ -175,7 +199,6 @@ $(function() {
 		}
 	});
 	
-	//when the rotate btn is click rotate selected ship
 	$shipImages.dblclick(function(){
 		
 		var ship = $(this);
