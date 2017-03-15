@@ -103,9 +103,8 @@
 		</main>
 		
 		<%@ include file="includes/scripts.jsp" %>
-		<script src="assets/js/startGame.js">
-</script>
-		
+		<script src="assets/js/startGame.js"></script>
+		<script src="assets/js/console.js"></script>
 
 	</body>
 </html>

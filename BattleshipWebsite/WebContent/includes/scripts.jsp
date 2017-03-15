@@ -12,7 +12,3 @@
 
 <script src="assets/js/initializeSite.js">
 </script>
-
-<script src="assets/js/console.js">
-</script>
-
