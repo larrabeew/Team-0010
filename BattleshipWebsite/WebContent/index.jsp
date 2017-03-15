@@ -16,7 +16,7 @@
 		</div>
 		
 		<main>
-			
+			<%@ include file="includes/startPage.jsp" %>
 			<%@ include file="includes/navigation.jsp" %>
 		
 			<div id="gameContain">
@@ -105,6 +105,8 @@
 			
 		</main>
 		
+
+		<%@ include file= "includes/footer.jsp" %>
 		<%@ include file="includes/scripts.jsp" %>
 
 	</body>

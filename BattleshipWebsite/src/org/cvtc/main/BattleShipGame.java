@@ -90,7 +90,6 @@ public class BattleShipGame {
 						positionY = Integer.parseInt(br.readLine());
 					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				

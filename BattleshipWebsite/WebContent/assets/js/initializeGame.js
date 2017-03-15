@@ -77,4 +77,24 @@ $(function() {
 		accept: "img"
 	});
 	
+	// Get the "Go to Game" button and use it to close the start page
+	var $gameBtn = $(".startBtn");
+	
+	var $startPage = $("div.startPage");
+	
+	$gameBtn.on("click", function(){
+		$startPage.css("display", "none");
+	});
+	
+	var $musicBtn = $(".musicBtn");
+	
+	var $audio = $("#player");
+	
+	$musicBtn.on("click", function(){
+		
+		$audio.trigger("pause");
+		
+	});
+	
+
 });
