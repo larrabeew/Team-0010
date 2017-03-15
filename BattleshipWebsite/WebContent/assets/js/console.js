@@ -1,6 +1,6 @@
 $(function() {
 	
-	var $cursor = $('span#cursor');
+	var $cursor = $('span#caret');
 	
 	function cursor() {
 		
@@ -8,7 +8,7 @@ $(function() {
 			
 			$cursor.animate({backgroundColor: '#000'}, 400, 'linear',function() {
 				
-				//RECURSION!!!!!
+				// RECURSION!!!!!
 				cursor();
 				
 			});

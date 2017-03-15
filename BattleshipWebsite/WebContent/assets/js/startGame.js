@@ -13,12 +13,16 @@ var subShipDirection = "DOWN";
 var pbShip = "";
 var pbShipDirection = "DOWN";
 
-var game_id = null;
+var $shipImages = $('div#shipDockImages > img');
 
+var game_id = null;
 var turn = null;
 
+// Output code here yo!
+var $consoleOutput = $('p#consoleText');
 
 $(function() {
+
 	
 	// Clicks on enemy board
 	$('table#enemyBoard > tbody > tr > td').click(function() {
@@ -40,9 +44,22 @@ $(function() {
 		
 	});
 	
-	// Clicks on ship images
+	// Drags on ship images
 	$('img').draggable({
+		
+		start: function(event, ui) {
+			
+			$(this).css({
+				opacity: '.6'
+			});
+			
+		},
+	
 		stop: function(event, ui){
+			
+			$(this).css({
+				opacity: '1'
+			});
 			
 			var ship = this.id;
 			
@@ -155,89 +172,166 @@ $(function() {
 				subShip = coord;
 				
 			}
-
 		}
 	});
 	
 	//when the rotate btn is click rotate selected ship
-	$(document).on("click", "#btnRotate", function(){
+	$shipImages.dblclick(function(){
 		
-		var ship = $("#rotateShip").val();
+		var ship = $(this);
 		
-		if(ship == "pb"){
+		var direction = "DOWN";
+		
+		//set the location for the ship that was moved.
+		if(ship == "PBShip"){
 			
-			$("#PBShip").rotate(90);
-			
-			if(pbShipDirection == "DOWN"){
+			if(pbShipDirection == "DOWN") {
 				
-				pbShipDirection = "RIGHT";
+				$(this).css({
+					'transform':          'rotate(0deg)',
+					'-ms-transform':      'rotate(0deg)',
+					'-moz-transform':     'rotate(0deg)',
+					'-webkit-transform':  'rotate(0deg)',
+					'-o-transform':       'rotate(0deg)'
+				});
 				
-			}else{
+				direction = "RIGHT";
+			} else {
 				
-				pbShipDirection = "DOWN";
+				$(this).css({
+					'transform':          'rotate(90deg)',
+					'-ms-transform':      'rotate(90deg)',
+					'-moz-transform':     'rotate(90deg)',
+					'-webkit-transform':  'rotate(90deg)',
+					'-o-transform':       'rotate(90deg)'
+				});
+				
+				direction = "DOWN";
 				
 			}
 			
-		}else if(ship == "carrier"){
+			pbShipDirection = direction; 
 			
-			$("#CarrierShip").rotate(90);
+		}else if(ship == "CarrierShip"){
 			
-			if(carrierShipDirection == "DOWN"){
+			if(carrierShipDirection == "DOWN") {
 				
-				carrierShipDirection = "RIGHT";
+				$(this).css({
+					'transform':          'rotate(0deg)',
+					'-ms-transform':      'rotate(0deg)',
+					'-moz-transform':     'rotate(0deg)',
+					'-webkit-transform':  'rotate(0deg)',
+					'-o-transform':       'rotate(0deg)'
+				});
 				
-			}else{
+				direction = "RIGHT";
+			} else {
 				
-				carrierShipDirection = "DOWN";
+				$(this).css({
+					'transform':          'rotate(90deg)',
+					'-ms-transform':      'rotate(90deg)',
+					'-moz-transform':     'rotate(90deg)',
+					'-webkit-transform':  'rotate(90deg)',
+					'-o-transform':       'rotate(90deg)'
+				});
+				
+				direction = "DOWN";
 				
 			}
 			
-		}else if(ship == "battleship"){
+			carrierShipDirection = direction;
 			
-			$("#Battleship").rotate(90);
+		}else if(ship == "Battleship"){
 			
-			if(battleShipDirection == "DOWN"){
+			if(battleShipDirection == "DOWN") {
 				
-				battleShipDirection = "RIGHT";
+				$(this).css({
+					'transform':          'rotate(0deg)',
+					'-ms-transform':      'rotate(0deg)',
+					'-moz-transform':     'rotate(0deg)',
+					'-webkit-transform':  'rotate(0deg)',
+					'-o-transform':       'rotate(0deg)'
+				});
 				
-			}else{
+				direction = "RIGHT";
+			} else {
 				
-				battleShipDirection = "DOWN";
+				$(this).css({
+					'transform':          'rotate(90deg)',
+					'-ms-transform':      'rotate(90deg)',
+					'-moz-transform':     'rotate(90deg)',
+					'-webkit-transform':  'rotate(90deg)',
+					'-o-transform':       'rotate(90deg)'
+				});
+				
+				direction = "DOWN";
 				
 			}
 			
-		}else if(ship == "destroyer"){
+			battleShipDirection = direction;
 			
-			$("#DestroyerShip").rotate(90);
+		}else if(ship == "DestroyerShip"){
 			
-			if(destroyerShipDirection == "DOWN"){
+			if(destroyerShipDirection == "DOWN") {
 				
-				destroyerShipDirection = "RIGHT";
+				$(this).css({
+					'transform':          'rotate(0deg)',
+					'-ms-transform':      'rotate(0deg)',
+					'-moz-transform':     'rotate(0deg)',
+					'-webkit-transform':  'rotate(0deg)',
+					'-o-transform':       'rotate(0deg)'
+				});
 				
-			}else{
+				direction = "RIGHT";
+			} else {
 				
-				destroyerShipDirection = "DOWN";
+				$(this).css({
+					'transform':          'rotate(90deg)',
+					'-ms-transform':      'rotate(90deg)',
+					'-moz-transform':     'rotate(90deg)',
+					'-webkit-transform':  'rotate(90deg)',
+					'-o-transform':       'rotate(90deg)'
+				});
+				
+				direction = "DOWN";
 				
 			}
 			
-		}else if(ship == "sub"){
+			destroyerShipDirection = direction;
 			
-			$("#SubShip").rotate(90);
+		}else if(ship == "SubShip"){
 			
-			if(subShipDirection == "DOWN"){
+			if(destroyerShipDirection == "DOWN") {
 				
-				subShipDirection = "RIGHT";
+				$(this).css({
+					'transform':          'rotate(0deg)',
+					'-ms-transform':      'rotate(0deg)',
+					'-moz-transform':     'rotate(0deg)',
+					'-webkit-transform':  'rotate(0deg)',
+					'-o-transform':       'rotate(0deg)'
+				});
 				
-			}else{
+				direction = "RIGHT";
+			} else {
 				
-				subShipDirection = "DOWN";
+				$(this).css({
+					'transform':          'rotate(90deg)',
+					'-ms-transform':      'rotate(90deg)',
+					'-moz-transform':     'rotate(90deg)',
+					'-webkit-transform':  'rotate(90deg)',
+					'-o-transform':       'rotate(90deg)'
+				});
+				
+				direction = "DOWN";
 				
 			}
+			
+			subShipDirection = direction;
 			
 		}
 	});
 	
-	//when the rotate btn is click rotate selected ship
+	
 	$(document).on("click", "#btnStart", function(){
 		user_id = "Wes";
 		opponent_id = "Computer";
@@ -247,12 +341,14 @@ $(function() {
 			game_id = startGame(user_id, opponent_id);
 			
 			if(carrierShip != "" && battleShip != "" && destroyerShip != "" && subShip != "" && pbShip != ""){
+				
 				  
-				  var carrierShipString = carrierShipDirection + "~" + carrierShip;
-				  var pbShipString = pbShipDirection + "~" + pbShip;
-				  var battleShipString = battleShipDirection + "~" + battleShip;
-				  var destroyerShipString = destroyerShipDirection + "~" + destroyerShip;
-				  var subShipString = subShipDirection + "~" + subShip;
+				  var carrierShipString = carrierShip + "~" + carrierShip;
+				  alert(carrierShipString);
+				  var pbShipString = pbShip + "~" + pbShip;
+				  var battleShipString = battleShip + "~" + battleShip;
+				  var destroyerShipString = destroyerShip + "~" + destroyerShip;
+				  var subShipString = subShip + "~" + subShip;
 				  
 				  shipsSet = setShips(user_id, game_id, carrierShipString, battleShipString, destroyerShipString, subShipString, pbShipString);
 			}
@@ -261,11 +357,11 @@ $(function() {
 			
 			if(carrierShip != "" && battleShip != "" && destroyerShip != "" && subShip != "" && pbShip != ""){
 				  
-				  var carrierShipString = carrierShipDirection + "~" + carrierShip;
-				  var pbShipString = pbShipDirection + "~" + pbShip;
-				  var battleShipString = battleShipDirection + "~" + battleShip;
-				  var destroyerShipString = destroyerShipDirection + "~" + destroyerShip;
-				  var subShipString = subShipDirection + "~" + subShip;
+				  var carrierShipString = carrierShip + "~" + carrierShip;
+				  var pbShipString = pbShip + "~" + pbShip;
+				  var battleShipString = battleShip + "~" + battleShip;
+				  var destroyerShipString = destroyerShip + "~" + destroyerShip;
+				  var subShipString = subShip + "~" + subShip;
 				  
 				  shipsSet = setShips(user_id, game_id, carrierShipString, battleShipString, destroyerShipString, subShipString, pbShipString);
 			}
@@ -274,11 +370,11 @@ $(function() {
 		
 		if(shipsSet){
 			
-			alert("Ships are set");
+			$consoleOutput.append("<p>Ships have been set!<p>");
 			
 		}else{
 			
-			alert("Error when setting ships");
+			$consoleOutput.append("<p>Error: Ships were not set up correctly! Please reset your ships and try again.</p>");
 			
 		}
 		
@@ -298,7 +394,6 @@ function startGame(user_id, opponent_id){
 			  game_id = game_id.trim();
 			  
 			  turn = user_id;
-			  
 		});
 	
 	return game_id;

@@ -17,11 +17,6 @@ h2#highScore {
 	text-shadow: -0.5px 0 #000, 0 0.5px #000, 0.5px 0 #000, 0 -0.5px #000;
 }
 
-h2#controlsHead {
-	padding-top: 75px;
-}
-
-
 div#highScoreContain {
 	width: 80%;
 	margin: 0 auto;
@@ -103,7 +98,7 @@ div#shipDockImages {
 div#shipDock img {
 	z-index: 1000;
 	position: relative;
-	padding: 0 15px;
+	padding: 0;
 }
 
 div#gameOutput, div#gameOutputText {
@@ -133,6 +128,11 @@ div#gameOutputText {
 	color: grey;
 }
 
+p#consoleText > p {
+	padding: 4px 0;
+	margin: 0;
+}
+
 p#consoleText {
 	padding: 5px 10px;
 	font-weight: bold;
@@ -140,9 +140,9 @@ p#consoleText {
 }
 
 span#caret {
-	padding: 1px 3px;
+	padding: 1px 0px 1px 3px;
 	background-color: #fff;
-	margin: 10px;
+	margin: 10px 0px 10px 10px;
 }
 
 input#fakeInput {

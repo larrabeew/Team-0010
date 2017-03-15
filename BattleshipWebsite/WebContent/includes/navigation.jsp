@@ -7,6 +7,9 @@
 			<a href="about.jsp">About</a>
 		</li>
 		<li>
+			<a href="Instructions.jsp">Instructions</a>
+		</li>
+		<li>
 			<a href="history.jsp">History</a>
 		</li>
 	</ul>

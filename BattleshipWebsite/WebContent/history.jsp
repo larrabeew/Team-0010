@@ -68,6 +68,12 @@
 		<p>Part of Axis forces, the Japanese were relentless in their attacks, and were the last of the Axis forces to surrender, even after Germany surrendered to the Allies.
 		They did not surrender until America dropped two atomic bombs on two major cities, Hiroshima on August 6, 1945, and Nagasaki August 9, 1945.</p>
 	</div>
+	
+		<%@ include file="includes/footer.jsp" %>
+		
 	</main>
+	
+	<%@ include file="includes/scripts.jsp" %>
+	
 </body>
 </html>

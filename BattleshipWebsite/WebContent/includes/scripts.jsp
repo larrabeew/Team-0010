@@ -7,7 +7,13 @@
 <script src="assets/js/bootstrap.min.js">
 </script>
 
-<script src="assets/js/initializeGame.js">
+<script src="assets/js/jQueryRotate.js">
+</script>
+
+<script src="assets/js/initializeSite.js">
+</script>
+
+<script src="assets/js/startGame.js">
 </script>
 
 <script src="assets/js/console.js">

@@ -1,0 +1,50 @@
+#startLogo{
+	width: 75%;	
+	margin: 0 auto;
+	clear: both;
+}
+
+.startPage{
+	display: block;
+	z-index: 10001;
+	position: fixed;
+	top: 0;
+	left: 50%;
+	margin-left: -32.5%;
+	width: 65%;
+	height: 100%;
+	background-image: url('../images/main_background.png');
+	text-align: center;
+	border: 2px solid #333333;
+	box-shadow: -5px 5px #333333,
+		-5px 5px #333333,
+		-5px 5px #333333,
+		-5px 5px #333333,
+		-5px 5px #333333;
+		
+}
+
+.startBtn{
+	top: 500px;
+	padding: 10px;
+}
+.singleBtn{
+	top: 300px;
+	padding: 10px;
+}
+
+.multiBtn{
+	top: 300px;
+	padding: 10px;
+}
+
+#gameBtn{
+	display: inline-block;
+	border-radius: 8px;
+	font-size: 20px;
+}
+
+#gameBtn:hover{
+	box-shadow: 0 12px 0 rgba(0,0,0,0.24),
+		0 17px 50px 0 rgba(0,0,0,0.19);
+}

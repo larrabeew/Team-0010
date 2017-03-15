@@ -3,10 +3,13 @@
 	<head>
 		<%@ include file="includes/head.jsp" %>
 		<title>Battleship | Home</title>
+		<link href="assets/css/startPopUp.css" rel="stylesheet" type="text/css">
 		<link href="assets/css/index.css" rel="stylesheet" type="text/css">
 	</head>
 	
 	<body>
+	
+		<%@ include file="includes/startPage.jsp" %>
 		
 		<h1>Battleship</h1>
 		<div class="container">
@@ -16,7 +19,7 @@
 		</div>
 		
 		<main>
-			<%@ include file="includes/startPage.jsp" %>
+			
 			<%@ include file="includes/navigation.jsp" %>
 		
 			<div id="gameContain">
@@ -27,8 +30,8 @@
 						<%@ include file="includes/grid.jsp" %>
 					</table>
 					<div id="userBoardButtons">
-						<button class="btn gameBtn">Start</button>
-						<button class="btn gameBtn">Reset Ships</button>
+						<button class="btn gameBtn" id="btnStart">Start</button>
+						<button class="btn gameBtn" id="reset">Reset Ships</button>
 					</div>
 				</div>
 
@@ -43,23 +46,23 @@
 					<div id="shipDock">
 						<h3>Ship Dock</h3>
 						<div id="shipDockImages">
-							<img id="CarrierShip"
+							<img id="carrierShip"
 								 src="assets/images/ships/CarrierShip.png"
 								 alt="Carrier Image">
 								 
-							<img id="Battleship"
+							<img id="battleship"
 								 src="assets/images/ships/Battleship.png"
 								 alt="Battleship Image">
 								 
-							<img id="DestroyerShip"
+							<img id="destroyerShip"
 								 src="assets/images/ships/DestroyerShip.png"
 								 alt="Destroyer Image">
 								 
-							<img id="SubShip"
+							<img id="subShip"
 								 src="assets/images/ships/SubShip.png"
 								 alt="SubShip Image"> 
 							
-							<img id="PBShip"
+							<img id="pbShip"
 								 src="assets/images/ships/PBShip.png"
 								 alt="PBShip Image">
 						</div>
@@ -79,13 +82,7 @@
 					
 				</div>
 				
-				<div class="col-md-8">
-					<h2 id="controlsHead">Controls &amp; Rules</h2>
-					
-				
-				</div>
-				
-				<div class="col-md-4">
+				<div class="col-md-12">
 					<div id="highScoreContain">
 						<h2 id="highScore">High Scores</h2>
 						<div id="highScoreTextContain">
@@ -105,8 +102,6 @@
 			
 		</main>
 		
-
-		<%@ include file= "includes/footer.jsp" %>
 		<%@ include file="includes/scripts.jsp" %>
 
 	</body>

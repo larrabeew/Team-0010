@@ -1,18 +1,15 @@
-* {
-	text-align: center;
-	font-size: 21px;
-	letter-spacing: 3px;
-}
 
 #historyText {
 	color: white;
 	width: 80%;
 	height: 740px;
-	font-size: 20px;
 	text-align: center;
 	margin: 0 auto;
 	overflow-y: auto;
 	text-shadow: 2px 2px #000;
+	text-align: center;
+	font-size: 21px;
+	letter-spacing: 3px;
 }
 
 #historyText img{
